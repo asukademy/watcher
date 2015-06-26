@@ -1,0 +1,10 @@
+# Development system files #
+.*
+!/.gitignore
+
+# Composer #
+/vendor
+!vendor/index.html
+
+# Windwalker #
+/config.json

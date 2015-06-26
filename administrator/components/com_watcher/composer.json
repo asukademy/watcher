@@ -1,0 +1,9 @@
+{
+	"name" : "smstw/watcher",
+
+	"require" : {
+	},
+
+	"require-dev" : {
+	}
+}

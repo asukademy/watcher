@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset name="information"
+		label="網站資訊"
+		align="left"
+		horz="true">
+
+		<field name="title"
+			type="text"
+			label="JGLOBAL_TITLE"
+			description="JFIELD_TITLE_DESC"
+			required="true"
+			class="input-xxlarge required"
+			/>
+
+		<field name="alias"
+			type="text"
+			label="JFIELD_ALIAS_LABEL"
+			description="JFIELD_ALIAS_DESC"
+			/>
+
+		<field name="catid"
+			type="categoryadd"
+			label="JCATEGORY"
+			description="JFIELD_CATEGORY_DESC"
+			extension="com_watcher"
+			quickadd="true"
+			>
+			<option value="0">COM_WATCHER_TITLE_UNCATEGORISED</option>
+		</field>
+
+		<field name="url"
+			type="uri"
+			label="COM_WATCHER_URL"
+			description="COM_WATCHER_URL_DESC"
+			class="input-xxlarge"
+			required="true"
+			/>
+
+		<field
+			name="type"
+			type="list"
+			label="類型"
+			description=""
+			class=""
+			default="ezset"
+			>
+			<option value="ezset">Ezset 備份功能</option>
+			<option value="script">備份 Script 檔案</option>
+		</field>
+		
+		<field 
+			name="username"
+			type="username"
+			label="帳號"
+			description="備份網站的驗證帳號"
+			class=""
+			default=""
+			autocomplete="off"
+			/>
+		
+		<field 
+			name="password"
+			type="password"
+			label="密碼"
+			description=""
+			class=""
+			default=""
+			autocomplete="false"
+			/>
+
+		<field
+			name="text"
+			type="text"
+			label="Access Token"
+			description=""
+			class="input-xxlarge"
+			default=""
+			disabled="true"
+			readonly="true"
+			/>
+	</fieldset>
+
+	<fieldset
+		name="publish"
+		align="right"
+		horz="true">
+
+		<field name="state"
+			type="list"
+			label="JSTATUS"
+			description="JFIELD_PUBLISHED_DESC"
+			class="chzn-color-state"
+			size="1"
+			default="1"
+			>
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+		</field>
+
+		<field name="id"
+			type="text"
+			default="0"
+			label="JGLOBAL_FIELD_ID_LABEL"
+			readonly="true"
+			class="readonly"
+			description="JGLOBAL_FIELD_ID_DESC"
+			/>
+
+		<field name="created_by"
+			type="user"
+			label="COM_WATCHER_CREATED_BY"
+			description="COM_WATCHER_CREATED_BY_DESC"
+			/>
+
+		<field name="created"
+			type="calendar"
+			label="COM_WATCHER_CREATED"
+			description="COM_WATCHER_CREATED_DESC"
+			/>
+
+	</fieldset>
+
+	<!-- Need this field as child of root node for access setting. -->
+	<field name="asset_id"
+		type="hidden"
+		filter="unset"/>
+
+	<!-- For Quick Ajax AddNew -->
+	<fieldset name="quickadd">
+		<field name="title"
+			type="text"
+			label="JGLOBAL_TITLE"
+			description="JFIELD_TITLE_DESC"
+			required="true"
+			size="50"
+			labelclass=""
+			class="input-xlarge"
+			/>
+
+		<field name="catid"
+			type="category"
+			label="JCATEGORY"
+			description="JFIELD_CATEGORY_DESC"
+			extension="com_watcher"
+			labelclass=""
+			>
+			<option value="0">COM_WATCHER_TITLE_UNCATEGORISED</option>
+		</field>
+
+		<!--<field name="parent_id"
+			type="site_list"
+			label="COM_WATCHER_PARENT_ITEM"
+			description="COM_WATCHER_PARENT_ITEM_DESC"
+			labelclass=""
+			class="input-xlarge inputbox"
+			access="true"
+		>
+			<option>JSELECT</option>
+			<option value="1">JLIB_HTML_ADD_TO_ROOT</option>
+		</field>-->
+	</fieldset>
+
+</form>

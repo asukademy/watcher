@@ -1,0 +1,1 @@
+DROP TABLE  `#__watcher_sites`;
