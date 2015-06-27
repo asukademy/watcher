@@ -59,7 +59,7 @@ class WorkerApplication extends \JApplicationDaemon
 			return;
 		}
 
-		$site = json_decode($message->body);
+		$site = new Data(json_decode($message->body));
 
 		// Fatal error
 		if ($child == -1)
@@ -81,6 +81,8 @@ class WorkerApplication extends \JApplicationDaemon
 			$backup = new Backup($site);
 
 			$backup->deleteOldBackups()->backup();
+
+			$this->ironmq->deleteMessage('Backup', $message->id);
 		}
 	}
 }

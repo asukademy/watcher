@@ -26,10 +26,20 @@ $form      = $data->form;
 $item      = $data->item;
 
 // Setting tabset
-$tabs = array(
-	'tab_basic',
-	'tab_backups'
-);
+if (empty($data->item->id))
+{
+	$tabs = array(
+		'tab_basic',
+		'tab_backups'
+	);
+}
+else
+{
+	$tabs = array(
+		'tab_backups',
+		'tab_basic',
+	);
+}
 ?>
 <!-- Validate Script -->
 <script type="text/javascript">

@@ -80,7 +80,7 @@ class Backup
 	 * @param Provider\AbstractProvider      $provider
 	 * @param Storage\BackupStorageInterface $storage
 	 */
-	public function __construct($site = null, $provider = null, $storage = null)
+	public function __construct(Data $site = null, $provider = null, $storage = null)
 	{
 		$this->site = $site ? : new Data;
 

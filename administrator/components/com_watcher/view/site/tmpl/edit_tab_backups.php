@@ -36,7 +36,7 @@ $tab = $data->tab;
 
 			<?php
 				$backup = new Data($backup);
-				$backupHandler = new Backup($data->item, AbstractProvider::create($backup->type));
+				$backupHandler = new Backup(new Data($data->item), AbstractProvider::create($backup->type));
 				$backupHandler->setBackup($backup);
 
 				// Diff
