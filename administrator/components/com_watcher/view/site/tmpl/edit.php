@@ -46,6 +46,13 @@ $tabs = array(
 	<form action="<?php echo JURI::getInstance(); ?>"  method="post" name="adminForm" id="adminForm"
 		class="form-validate" enctype="multipart/form-data">
 
+		<div class="form-inline form-inline-header">
+			<?php
+			echo $form->renderField('title');
+			echo $form->renderField('alias');
+			?>
+		</div>
+
 		<?php echo JHtmlBootstrap::startTabSet('siteEditTab', array('active' => 'tab_basic')); ?>
 
 			<?php

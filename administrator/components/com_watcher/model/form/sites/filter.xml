@@ -11,6 +11,8 @@
 			<option value="*">JALL</option>
 			<option value="site.title">JGLOBAL_TITLE</option>
 			<option value="category.title">JCATEGORY</option>
+			<option value="site.site">site</option>
+			<option value="site.irl">url</option>
 		</field>
 
 		<field

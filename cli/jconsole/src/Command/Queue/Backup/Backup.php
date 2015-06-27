@@ -7,21 +7,22 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-namespace Command\Queue;
+namespace Command\Queue\Backup;
 
 use JConsole\Command\JCommand;
+use Windwalker\Joomla\DataMapper\DataMapper;
 
 defined('JCONSOLE') or die;
 
 /**
- * Class Queue
+ * Class Backup
  *
  * @package     Joomla.Cli
  * @subpackage  JConsole
  *
  * @since       3.2
  */
-class Queue extends JCommand
+class Backup extends JCommand
 {
 	/**
 	 * An enabled flag.
@@ -35,21 +36,21 @@ class Queue extends JCommand
 	 *
 	 * @var  string
 	 */
-	protected $name = 'queue';
+	protected $name = 'backup';
 
 	/**
 	 * The command description.
 	 *
 	 * @var  string
 	 */
-	protected $description = 'queue';
+	protected $description = 'Backup a site';
 
 	/**
 	 * The usage to tell user how to use this command.
 	 *
 	 * @var string
 	 */
-	protected $usage = 'queue <cmd><command></cmd> <option>[option]</option>';
+	protected $usage = 'backup <cmd><command></cmd> <option>[option]</option>';
 
 	/**
 	 * Configure command information.
@@ -58,7 +59,7 @@ class Queue extends JCommand
 	 */
 	public function configure()
 	{
-		include_once JPATH_ADMINISTRATOR . '/components/com_watcher/src/init.php';
+		// $this->addCommand();
 
 		parent::configure();
 	}
@@ -70,6 +71,16 @@ class Queue extends JCommand
 	 */
 	protected function doExecute()
 	{
-		return parent::doExecute();
+		$id = $this->getArgument(0);
+
+		$site = (new DataMapper('#__watcher_sites'))->findOne($id);
+
+		$backup = new \Watcher\Backup\Backup($site);
+
+		$url = $backup->deleteOldBackups()->backup();
+
+		$this->out('Backup to: ' . $url);
+
+		return true;
 	}
 }

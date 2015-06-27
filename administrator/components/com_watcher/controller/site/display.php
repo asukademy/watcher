@@ -33,6 +33,8 @@ class WatcherControllerSiteDisplay extends \Windwalker\Controller\DisplayControl
 		$filters['backup.site_id'] = $this->input->get('id');
 		$state->set('filter', $filters);
 		$state->set('list.limit', 0);
+		$state->set('list.ordering', 'id');
+		$state->set('list.direction', 'DESC');
 
 		$view->setModel($model);
 	}

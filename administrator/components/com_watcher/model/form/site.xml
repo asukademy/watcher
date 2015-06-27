@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
-	<fieldset name="information"
-		label="網站資訊"
-		align="left"
-		horz="true">
-
+	<fieldset name="title">
 		<field name="title"
 			type="text"
 			label="JGLOBAL_TITLE"
@@ -18,6 +14,12 @@
 			label="JFIELD_ALIAS_LABEL"
 			description="JFIELD_ALIAS_DESC"
 			/>
+	</fieldset>
+
+	<fieldset name="information"
+		label="網站資訊"
+		align="left"
+		horz="true">
 
 		<field name="catid"
 			type="categoryadd"

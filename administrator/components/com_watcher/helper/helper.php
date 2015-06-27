@@ -28,27 +28,11 @@ abstract class WatcherHelper
 		$app       = \JFactory::getApplication();
 		$inflector = \JStringInflector::getInstance(true);
 
-		// Add Category Menu Item
-		if ($app->isAdmin())
-		{
-			JHtmlSidebar::addEntry(
-				JText::_('JCATEGORY'),
-				'index.php?option=com_categories&extension=com_watcher',
-				($vName == 'categories')
-			);
-		}
-
-		foreach (new \DirectoryIterator(JPATH_ADMINISTRATOR . '/components/com_watcher/view') as $folder)
-		{
-			if ($folder->isDir() && $inflector->isPlural($view = $folder->getBasename()))
-			{
-				JHtmlSidebar::addEntry(
-					JText::sprintf(sprintf('COM_WATCHER_%s_TITLE_LIST', strtoupper($folder))),
-					'index.php?option=com_watcher&view=' . $view,
-					($vName == $view)
-				);
-			}
-		}
+		JHtmlSidebar::addEntry(
+			'網站管理',
+			'index.php?option=com_watcher&view=sites',
+			($vName == 'sites')
+		);
 
 		$dispatcher = \JEventDispatcher::getInstance();
 		$dispatcher->trigger('onAfterAddSubmenu', array('com_watcher', $vName));

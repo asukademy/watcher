@@ -98,7 +98,7 @@ class WatcherModelBackups extends ListModel
 	 *
 	 * @return  void
 	 */
-	protected function populateState($ordering = 'id', $direction = 'DESC')
+	protected function populateState($ordering = 'id', $direction = 'ASC')
 	{
 		parent::populateState($ordering, $direction);
 	}

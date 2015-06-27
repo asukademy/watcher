@@ -46,6 +46,11 @@ class AbstractProvider
 	{
 		$class = __NAMESPACE__ . '\\' . ucfirst($type) . 'Provider';
 
+		if (!class_exists($class))
+		{
+			$class = __NAMESPACE__ . '\\' . 'EzsetProvider';
+		}
+
 		return new $class;
 	}
 

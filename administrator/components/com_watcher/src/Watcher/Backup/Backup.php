@@ -13,8 +13,10 @@ use Joomla\Filesystem\Folder;
 use Nomnom\Nomnom;
 use Watcher\Backup\Provider\EzsetProvider;
 use Watcher\Backup\Storage\S3Storage;
+use Watcher\Config\Config;
 use Watcher\Table\Table;
 use Windwalker\Data\Data;
+use Windwalker\Helper\DateHelper;
 use Windwalker\Joomla\DataMapper\DataMapper;
 
 /**
@@ -78,9 +80,9 @@ class Backup
 	 * @param Provider\AbstractProvider      $provider
 	 * @param Storage\BackupStorageInterface $storage
 	 */
-	public function __construct($site, $provider = null, $storage = null)
+	public function __construct($site = null, $provider = null, $storage = null)
 	{
-		$this->site = $site;
+		$this->site = $site ? : new Data;
 
 		$provider ? $this->setProvider($provider) : null;
 		$storage ? $this->setStorage($storage) : null;
@@ -93,8 +95,6 @@ class Backup
 	 */
 	public function backup()
 	{
-		$this->deleteOldBackups();
-
 		$this->createBackupProfile();
 
 		$file = $this->downloadBackupFile();
@@ -106,6 +106,10 @@ class Backup
 		$this->backup->state = static::STATE_FINISHED;
 
 		(new DataMapper(Table::BACKUPS))->updateOne($this->backup, 'id');
+
+		$this->site->last_backup = $this->backup->created;
+
+		(new DataMapper(Table::SITES))->updateOne($this->site, 'id');
 
 		File::delete($file->getPathname());
 
@@ -119,7 +123,7 @@ class Backup
 	 */
 	public function createBackupProfile()
 	{
-		$date = new \JDate;
+		$date = DateHelper::getDate('now');
 
 		$backup = [];
 		$backup['site_id'] = $this->site->id;
@@ -144,7 +148,7 @@ class Backup
 	 */
 	protected function store(\SplFileInfo $file)
 	{
-		$dest = 'simular/' . $this->site->id . '/backup-' . $this->getBackupIdentify() . '.zip';
+		$dest = 'backup/watcher/' . $this->site->id . '/backup-' . $this->getBackupIdentify() . '.zip';
 
 		$this->getStorage()->upload($file->getPathname(), $dest);
 
@@ -158,7 +162,10 @@ class Backup
 	 */
 	public function getBackupIdentify()
 	{
-		return \JFilterOutput::stringURLSafe($this->backup->created);
+		$base = new \JUri($this->site->site);
+		$base->setScheme(null);
+
+		return \JFilterOutput::stringURLSafe($base . '-' . $this->backup->created);
 	}
 
 	/**
@@ -169,6 +176,11 @@ class Backup
 	protected function downloadBackupFile()
 	{
 		$backupTmpFile = $this->getTmpFile();
+
+		if (is_dir($backupTmpFile->getPath()))
+		{
+			Folder::delete($backupTmpFile->getPath());
+		}
 
 		$this->getProvider()->download($backupTmpFile->getPathname());
 
@@ -184,7 +196,7 @@ class Backup
 	{
 		if (empty($this->tmpFile))
 		{
-			$this->tmpFile = new \SplFileInfo(JPATH_ROOT . '/tmp/backups/' . $this->site->id . '/' . (new \JDate)->format('Y-m-d-H-i-s') . '.zip');
+			$this->tmpFile = new \SplFileInfo(JPATH_ROOT . '/tmp/backups/' . $this->site->id . '/' . DateHelper::getDate()->format('Y-m-d-H-i-s') . '.zip');
 		}
 
 		return $this->tmpFile;
@@ -193,20 +205,13 @@ class Backup
 	/**
 	 * deleteOldBackups
 	 *
-	 * @return  void
+	 * @return  static
 	 */
 	public function deleteOldBackups()
 	{
-		$tmpFile = $this->getTmpFile();
+		$now = DateHelper::getDate();
 
-		if (is_dir($tmpFile->getPath()))
-		{
-			Folder::delete($tmpFile->getPath());
-		}
-
-		$now = new \JDate;
-
-		$last = $now->modify('-5 days');
+		$last = $now->modify('-' . Config::get('backup.remain_days', 30) . ' days');
 
 		$db = \JFactory::getDbo();
 
@@ -217,6 +222,8 @@ class Backup
 		{
 			$this->deleteBackup($backup);
 		}
+
+		return $this;
 	}
 
 	/**

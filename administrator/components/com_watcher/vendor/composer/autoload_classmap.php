@@ -6,9 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'IlluminateQueueClosure' => $vendorDir . '/illuminate/queue/IlluminateQueueClosure.php',
     'S3' => $vendorDir . '/tpyo/amazon-s3-php-class/S3.php',
     'S3Exception' => $vendorDir . '/tpyo/amazon-s3-php-class/S3.php',
     'S3Request' => $vendorDir . '/tpyo/amazon-s3-php-class/S3.php',
-    'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Resources/stubs/SessionHandlerInterface.php',
 );

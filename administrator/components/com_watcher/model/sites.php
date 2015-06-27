@@ -98,7 +98,7 @@ class WatcherModelSites extends ListModel
 	 *
 	 * @return  void
 	 */
-	protected function populateState($ordering = null, $direction = 'ASC')
+	protected function populateState($ordering = 'last_backup', $direction = 'DESC')
 	{
 		// Build ordering prefix
 		if (!$ordering)

@@ -58,9 +58,14 @@ $grid->registerTableSort();
 		<?php echo $grid->sortTitle('JCATEGORY', 'category.title'); ?>
 	</th>
 
-	<!--CREATED-->
+	<!--DOWNLOAD-->
 	<th width="10%" class="center">
-		<?php echo $grid->sortTitle('JDATE', 'site.created'); ?>
+		下載
+	</th>
+
+	<!--LAST-->
+	<th width="10%" class="center">
+		<?php echo $grid->sortTitle('最後一次備份', 'site.last_backup'); ?>
 	</th>
 
 	<!--USER-->
@@ -132,9 +137,18 @@ $grid->registerTableSort();
 			<?php echo $this->escape($item->category_title); ?>
 		</td>
 
-		<!--CREATED-->
+		<!--DOWNLOAD-->
 		<td class="center">
-			<?php echo JHtml::_('date', $item->created, JText::_('DATE_FORMAT_LC4')); ?>
+			<a class="btn btn-info btn-small" href="<?php echo JRoute::_('index.php?option=com_watcher&task=site.download&id=' . $item->id) ?>">
+				<span class="glyphicon glyphicon-download-alt"></span> 下載最後的備份
+			</a>
+		</td>
+
+		<!--LAST-->
+		<td class="center">
+			<?php if ($item->last_backup != '0000-00-00 00:00:00'): ?>
+				<?php echo JHtml::_('date', $item->last_backup, JText::_('DATE_FORMAT_LC4')); ?>
+			<?php endif; ?>
 		</td>
 
 		<!--USER-->

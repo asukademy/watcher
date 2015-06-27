@@ -6,26 +6,10 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Symfony\\Component\\Translation\\' => array($vendorDir . '/symfony/translation'),
-    'Symfony\\Component\\Process\\' => array($vendorDir . '/symfony/process'),
-    'Symfony\\Component\\HttpKernel\\' => array($vendorDir . '/symfony/http-kernel'),
-    'Symfony\\Component\\HttpFoundation\\' => array($vendorDir . '/symfony/http-foundation'),
-    'Symfony\\Component\\Finder\\' => array($vendorDir . '/symfony/finder'),
-    'Symfony\\Component\\EventDispatcher\\' => array($vendorDir . '/symfony/event-dispatcher'),
-    'Symfony\\Component\\Debug\\' => array($vendorDir . '/symfony/debug'),
-    'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
-    'Stringy\\' => array($vendorDir . '/danielstjules/stringy/src'),
     'Joomla\\Uri\\Tests\\' => array($vendorDir . '/joomla/uri/Tests'),
     'Joomla\\Uri\\' => array($vendorDir . '/joomla/uri/src'),
     'Joomla\\Http\\Tests\\' => array($vendorDir . '/joomla/http/Tests'),
     'Joomla\\Http\\' => array($vendorDir . '/joomla/http/src'),
     'IronMQ\\' => array($vendorDir . '/iron-io/iron_mq/src'),
     'IronCore\\' => array($vendorDir . '/iron-io/iron_core/src'),
-    'Illuminate\\Support\\' => array($vendorDir . '/illuminate/support'),
-    'Illuminate\\Session\\' => array($vendorDir . '/illuminate/session'),
-    'Illuminate\\Queue\\' => array($vendorDir . '/illuminate/queue'),
-    'Illuminate\\Http\\' => array($vendorDir . '/illuminate/http'),
-    'Illuminate\\Contracts\\' => array($vendorDir . '/illuminate/contracts'),
-    'Illuminate\\Container\\' => array($vendorDir . '/illuminate/container'),
-    'Illuminate\\Console\\' => array($vendorDir . '/illuminate/console'),
 );

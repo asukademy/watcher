@@ -7,21 +7,26 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-namespace Command\Queue;
+namespace Command\Queue\Create;
 
+use IronMQ\IronMQ;
 use JConsole\Command\JCommand;
+use Watcher\Config\Config;
+use Watcher\IronMQ\IronMQHelper;
+use Watcher\Table\Table;
+use Windwalker\Joomla\DataMapper\DataMapper;
 
 defined('JCONSOLE') or die;
 
 /**
- * Class Queue
+ * Class Create
  *
  * @package     Joomla.Cli
  * @subpackage  JConsole
  *
  * @since       3.2
  */
-class Queue extends JCommand
+class Create extends JCommand
 {
 	/**
 	 * An enabled flag.
@@ -35,21 +40,21 @@ class Queue extends JCommand
 	 *
 	 * @var  string
 	 */
-	protected $name = 'queue';
+	protected $name = 'create';
 
 	/**
 	 * The command description.
 	 *
 	 * @var  string
 	 */
-	protected $description = 'queue';
+	protected $description = 'Create daily queue';
 
 	/**
 	 * The usage to tell user how to use this command.
 	 *
 	 * @var string
 	 */
-	protected $usage = 'queue <cmd><command></cmd> <option>[option]</option>';
+	protected $usage = 'create <cmd><command></cmd> <option>[option]</option>';
 
 	/**
 	 * Configure command information.
@@ -58,7 +63,7 @@ class Queue extends JCommand
 	 */
 	public function configure()
 	{
-		include_once JPATH_ADMINISTRATOR . '/components/com_watcher/src/init.php';
+		// $this->addCommand();
 
 		parent::configure();
 	}
@@ -70,6 +75,17 @@ class Queue extends JCommand
 	 */
 	protected function doExecute()
 	{
-		return parent::doExecute();
+		$sites = (new DataMapper(Table::SITES))->find(['state >= 1']);
+
+		$ironmq = IronMQHelper::getInstance();
+
+		$ironmq->clearQueue('Backup');
+
+		foreach ($sites as $site)
+		{
+			$ironmq->postMessage("Backup", json_encode($site), ['timeout' => 300]);
+		}
+
+		return true;
 	}
 }

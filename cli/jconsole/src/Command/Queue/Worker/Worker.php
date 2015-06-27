@@ -10,10 +10,9 @@
 namespace Command\Queue\Worker;
 
 use JConsole\Command\JCommand;
-use Joomla\Http\HttpFactory;
-use Watcher\Backup\Backup;
-use Windwalker\Helper\CurlHelper;
-use Windwalker\Joomla\DataMapper\DataMapper;
+use Watcher\IronMQ\IronMQHelper;
+use Watcher\Worker\WorkerApplication;
+use Windwalker\Data\Data;
 
 defined('JCONSOLE') or die;
 
@@ -74,17 +73,9 @@ class Worker extends JCommand
 	 */
 	protected function doExecute()
 	{
-		include_once JPATH_ADMINISTRATOR . '/components/com_watcher/src/init.php';
+		$app = new WorkerApplication;
 
-		$id = $this->getArgument(0);
-
-		$site = (new DataMapper('#__watcher_sites'))->findOne($id);
-
-		$backup = new Backup($site);
-
-		$url = $backup->backup();
-
-		$this->out($url);
+		$app->execute();
 
 		return true;
 	}
