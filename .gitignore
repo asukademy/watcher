@@ -16,3 +16,6 @@ Thumbs.db
 /tmp/*
 !/tmp/index.html
 /configuration.php
+
+# Config
+sms/etc/config.yml

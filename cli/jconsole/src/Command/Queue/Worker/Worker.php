@@ -11,6 +11,7 @@ namespace Command\Queue\Worker;
 
 use JConsole\Command\JCommand;
 use Joomla\Http\HttpFactory;
+use Watcher\Backup\Backup;
 use Windwalker\Helper\CurlHelper;
 use Windwalker\Joomla\DataMapper\DataMapper;
 
@@ -79,69 +80,12 @@ class Worker extends JCommand
 
 		$site = (new DataMapper('#__watcher_sites'))->findOne($id);
 
-		$this->deleteOldBackups($site->id);
+		$backup = new Backup($site);
 
-		if ($site->type == 'ezset')
-		{
-			$backupTmpFile = new \SplFileInfo(JPATH_ROOT . '/tmp/backups/' . $site->id . '/' . (new \JDate)->format('Y-m-d-H-i-s') . '.zip');
+		$url = $backup->backup();
 
-			if (!is_dir($backupTmpFile->getPath()))
-			{
-				\JFolder::create($backupTmpFile->getPath());
-			}
-
-			$uri = new \JUri($site->url);
-			$uri->setUser($site->username);
-			$uri->setPass($site->password);
-			$uri->setVar('cmd', 'backup');
-			$uri->setVar('quite', 1);
-
-			$fp = fopen($backupTmpFile->getPathname(), 'w+');
-
-			$options = array(
-				'transport.curl' => [
-					CURLOPT_RETURNTRANSFER => true,
-					CURLOPT_FILE => $fp,
-					CURLOPT_SSL_VERIFYPEER => false
-				]
-			);
-
-			$http = HttpFactory::getHttp($options, 'curl');
-
-			try
-			{
-				$http->get($uri->toString());
-			}
-			catch (\RuntimeException $e)
-			{
-			}
-
-			fclose($fp);
-		}
+		$this->out($url);
 
 		return true;
-	}
-
-	/**
-	 * deleteOldBackups
-	 *
-	 * @param int $id
-	 *
-	 * @return  void
-	 */
-	protected function deleteOldBackups($id)
-	{
-		$now = new \JDate;
-
-		$last = $now->modify('-5 days');
-
-		$db = \JFactory::getDbo();
-
-		$backups = (new DataMapper('#__watcher_backups'))
-			->find(['created < ' . $db->q($last), 'site_id' => $id]);
-
-		$ids = $backups->id;
-
-		(new DataMapper('#__watcher_backups'))->delete(['id' => $ids]);
 	}
 }
