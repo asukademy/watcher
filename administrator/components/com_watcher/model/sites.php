@@ -72,6 +72,7 @@ class WatcherModelSites extends ListModel
 		$queryHelper = $this->getContainer()->get('model.sites.helper.query', Container::FORCE_NEW);
 
 		$queryHelper->addTable('site', '#__watcher_sites')
+			->addTable('category', '#__categories', 'category.id = site.catid')
 			->addTable('user', '#__users', 'site.created_by = user.id');
 
 		$this->filterFields = array_merge($this->filterFields, $queryHelper->getFilterFields());
