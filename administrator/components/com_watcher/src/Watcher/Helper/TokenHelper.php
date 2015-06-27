@@ -18,12 +18,20 @@ class TokenHelper
 	/**
 	 * genAccessToken
 	 *
-	 * @param string $id
+	 * @return  string
+	 */
+	public static function genAccessToken($secret)
+	{
+		return sha1(md5('SimularWatcher' . $secret));
+	}
+
+	/**
+	 * genSecret
 	 *
 	 * @return  string
 	 */
-	public static function genAccessToken($id)
+	public static function genSecret()
 	{
-		return md5('AccessToken' . $id . sha1('Watcher-site-' . $id));
+		return \JUserHelper::genRandomPassword(24);
 	}
 }

@@ -59,24 +59,35 @@
 			<option value="script">備份 Script 檔案</option>
 		</field>
 		
-		<field 
-			name="username"
-			type="username"
-			label="帳號"
-			description="備份網站的驗證帳號"
-			class=""
-			default=""
-			autocomplete="off"
-			/>
-		
-		<field 
-			name="password"
-			type="password"
-			label="密碼"
+		<!--<field -->
+			<!--name="username"-->
+			<!--type="username"-->
+			<!--label="帳號"-->
+			<!--description="備份網站的驗證帳號"-->
+			<!--class=""-->
+			<!--default=""-->
+			<!--autocomplete="off"-->
+			<!--/>-->
+		<!---->
+		<!--<field -->
+			<!--name="password"-->
+			<!--type="password"-->
+			<!--label="密碼"-->
+			<!--description=""-->
+			<!--class=""-->
+			<!--default=""-->
+			<!--autocomplete="false"-->
+			<!--/>-->
+
+		<field
+			name="secret"
+			type="text"
+			label="Secret"
 			description=""
-			class=""
+			class="input-xxlarge"
 			default=""
-			autocomplete="false"
+			disabled="true"
+			readonly="true"
 			/>
 
 		<field

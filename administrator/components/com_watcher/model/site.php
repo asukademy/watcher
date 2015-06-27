@@ -83,9 +83,14 @@ class WatcherModelSite extends AdminModel
 	{
 		parent::prepareTable($table);
 
+		if (!$table->secret)
+		{
+			$table->secret = \Watcher\Helper\TokenHelper::genSecret();
+		}
+
 		if (!$table->access_token)
 		{
-			$table->access_token = \Watcher\Helper\TokenHelper::genAccessToken(uniqid());
+			$table->access_token = \Watcher\Helper\TokenHelper::genAccessToken($table->secret);
 		}
 	}
 
