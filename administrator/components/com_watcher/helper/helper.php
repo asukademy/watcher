@@ -28,6 +28,16 @@ abstract class WatcherHelper
 		$app       = \JFactory::getApplication();
 		$inflector = \JStringInflector::getInstance(true);
 
+		// Add Category Menu Item
+		if ($app->isAdmin())
+		{
+			JHtmlSidebar::addEntry(
+				JText::_('JCATEGORY'),
+				'index.php?option=com_categories&extension=com_watcher',
+				($vName == 'categories')
+			);
+		}
+
 		JHtmlSidebar::addEntry(
 			'網站管理',
 			'index.php?option=com_watcher&view=sites',

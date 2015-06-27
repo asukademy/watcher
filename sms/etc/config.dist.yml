@@ -3,4 +3,6 @@ amazon:
     secret:
     bucket:
     name:
-
+ironmq:
+    project_id:
+    token:
