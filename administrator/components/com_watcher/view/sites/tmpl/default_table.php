@@ -38,11 +38,6 @@ $grid->registerTableSort();
 <!-- TABLE HEADER -->
 <thead>
 <tr>
-	<!--SORT-->
-	<th width="1%" class="nowrap center hidden-phone">
-		<?php echo $grid->orderTitle(); ?>
-	</th>
-
 	<!--CHECKBOX-->
 	<th width="1%" class="center">
 		<?php echo JHtml::_('grid.checkAll'); ?>
@@ -63,11 +58,6 @@ $grid->registerTableSort();
 		<?php echo $grid->sortTitle('JCATEGORY', 'category.title'); ?>
 	</th>
 
-	<!--ACCESS VIEW LEVEL-->
-	<th width="5%" class="center">
-		<?php echo $grid->sortTitle('JGRID_HEADING_ACCESS', 'viewlevel.title'); ?>
-	</th>
-
 	<!--CREATED-->
 	<th width="10%" class="center">
 		<?php echo $grid->sortTitle('JDATE', 'site.created'); ?>
@@ -76,11 +66,6 @@ $grid->registerTableSort();
 	<!--USER-->
 	<th width="10%" class="center">
 		<?php echo $grid->sortTitle('JAUTHOR', 'user.name'); ?>
-	</th>
-
-	<!--LANGUAGE-->
-	<th width="5%" class="center">
-		<?php echo $grid->sortTitle('JGRID_HEADING_LANGUAGE', 'lang.title'); ?>
 	</th>
 
 	<!--ID-->
@@ -112,10 +97,6 @@ $grid->registerTableSort();
 	$grid->setItem($item, $i);
 	?>
 	<tr class="site-row" sortable-group-id="<?php echo $item->catid; ?>">
-		<!-- DRAG SORT -->
-		<td class="order nowrap center hidden-phone">
-			<?php echo $grid->dragSort(); ?>
-		</td>
 
 		<!--CHECKBOX-->
 		<td class="center">
@@ -127,9 +108,6 @@ $grid->registerTableSort();
 			<div class="btn-group">
 				<!-- STATE BUTTON -->
 				<?php echo $grid->state() ?>
-
-				<!-- CHANGE STATE DROP DOWN -->
-				<?php echo $this->loadTemplate('dropdown'); ?>
 			</div>
 		</td>
 
@@ -145,18 +123,13 @@ $grid->registerTableSort();
 
 			<!-- Sub Title -->
 			<div class="small">
-				<?php echo JText::sprintf('JGLOBAL_LIST_ALIAS', $this->escape($item->alias)); ?>
+				<a target="_blank" class="text-muted" href="<?php echo $item->site; ?>"><?php echo $item->site; ?> <i class="icon-share-alt"></i></a>
 			</div>
 		</td>
 
 		<!--CATEGORY-->
 		<td class="center">
 			<?php echo $this->escape($item->category_title); ?>
-		</td>
-
-		<!--ACCESS VIEW LEVEL-->
-		<td class="center">
-			<?php echo $this->escape($item->viewlevel_title); ?>
 		</td>
 
 		<!--CREATED-->
@@ -167,11 +140,6 @@ $grid->registerTableSort();
 		<!--USER-->
 		<td class="center">
 			<?php echo $this->escape($item->user_name); ?>
-		</td>
-
-		<!--LANGUAGE-->
-		<td class="center">
-			<?php echo $grid->language(); ?>
 		</td>
 
 		<!--ID-->

@@ -29,9 +29,17 @@
 			<option value="0">COM_WATCHER_TITLE_UNCATEGORISED</option>
 		</field>
 
+		<field name="site"
+			type="uri"
+			label="網站網址"
+			description="COM_WATCHER_URL_DESC"
+			class="input-xxlarge"
+			required="true"
+			/>
+
 		<field name="url"
 			type="uri"
-			label="COM_WATCHER_URL"
+			label="備份網址"
 			description="COM_WATCHER_URL_DESC"
 			class="input-xxlarge"
 			required="true"
@@ -70,7 +78,7 @@
 			/>
 
 		<field
-			name="text"
+			name="access_token"
 			type="text"
 			label="Access Token"
 			description=""

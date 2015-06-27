@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 JHtmlBootstrap::tooltip();
 JHtmlFormbehavior::chosen('select');
 JHtmlBehavior::formvalidation();
+JHtmlBehavior::tabstate();
 
 /**
  * Prepare data for this template.
@@ -27,7 +28,8 @@ $item      = $data->item;
 // Setting tabset
 $tabs = array(
 	'tab_basic',
-)
+	'tab_backups'
+);
 ?>
 <!-- Validate Script -->
 <script type="text/javascript">

@@ -87,5 +87,9 @@ class WatcherViewSiteHtml extends EditView
 	protected function prepareData()
 	{
 		parent::prepareData();
+
+		$data = $this->getData();
+
+		$data->backups = $this->get('Items', 'backups');
 	}
 }

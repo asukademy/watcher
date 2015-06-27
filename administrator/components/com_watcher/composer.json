@@ -2,6 +2,9 @@
 	"name" : "smstw/watcher",
 
 	"require" : {
+        "brianium/nomnom": "1.*",
+        "illuminate/queue": "5.*@stable",
+        "iron-io/iron_mq": "~2.0@stable"
 	},
 
 	"require-dev" : {

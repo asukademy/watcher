@@ -1,0 +1,17 @@
+{
+	"minimum-stability": "beta",
+	"require" : {
+		"windwalker/console": "~2.0",
+		"windwalker/string": "~2.0",
+		"windwalker/utilities": "~2.0",
+        "fzaninotto/faker": "1.*",
+        "asika/faker-zhtw": "1.*"
+	},
+	"require-dev" : {
+	},
+	"autoload": {
+		"psr-0": {
+			"": "src/"
+		}
+	}
+}

@@ -72,10 +72,7 @@ class WatcherModelBackups extends ListModel
 		$queryHelper = $this->getContainer()->get('model.backups.helper.query', Container::FORCE_NEW);
 
 		$queryHelper->addTable('backup', '#__watcher_backups')
-			->addTable('category',  '#__categories', 'backup.catid      = category.id')
-			->addTable('user',      '#__users',      'backup.created_by = user.id')
-			->addTable('viewlevel', '#__viewlevels', 'backup.access     = viewlevel.id')
-			->addTable('lang',      '#__languages',  'backup.language   = lang.lang_code');
+			->addTable('site', '#__watcher_sites', 'site.id = backup.site_id');
 
 		$this->filterFields = array_merge($this->filterFields, $queryHelper->getFilterFields());
 	}
@@ -101,18 +98,8 @@ class WatcherModelBackups extends ListModel
 	 *
 	 * @return  void
 	 */
-	protected function populateState($ordering = null, $direction = 'ASC')
+	protected function populateState($ordering = 'id', $direction = 'DESC')
 	{
-		// Build ordering prefix
-		if (!$ordering)
-		{
-			$table = $this->getTable('Backup');
-
-			$ordering = property_exists($table, 'ordering') ? 'backup.ordering' : 'backup.id';
-
-			$ordering = property_exists($table, 'catid') ? 'backup.catid, ' . $ordering : $ordering;
-		}
-
 		parent::populateState($ordering, $direction);
 	}
 

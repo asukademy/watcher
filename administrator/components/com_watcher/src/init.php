@@ -10,6 +10,7 @@
 defined('_JEXEC') or die;
 
 include_once JPATH_LIBRARIES . '/windwalker/src/init.php';
+include_once __DIR__ . '/../vendor/autoload.php';
 
 JLoader::registerPrefix('Watcher', JPATH_BASE . '/components/com_watcher');
 JLoader::registerNamespace('Watcher', JPATH_ADMINISTRATOR . '/components/com_watcher/src');
