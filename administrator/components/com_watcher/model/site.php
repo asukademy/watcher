@@ -82,6 +82,11 @@ class WatcherModelSite extends AdminModel
 	protected function prepareTable(\JTable $table)
 	{
 		parent::prepareTable($table);
+
+		if (!$table->access_token)
+		{
+			$table->access_token = \Watcher\Helper\TokenHelper::genAccessToken(uniqid());
+		}
 	}
 
 	/**

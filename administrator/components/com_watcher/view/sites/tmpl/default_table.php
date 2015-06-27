@@ -73,6 +73,11 @@ $grid->registerTableSort();
 		<?php echo $grid->sortTitle('JAUTHOR', 'user.name'); ?>
 	</th>
 
+	<!--TOKEN-->
+	<th width="10%" class="center">
+		Token
+	</th>
+
 	<!--ID-->
 	<th width="1%" class="nowrap center">
 		<?php echo $grid->sortTitle('JGRID_HEADING_ID', 'site.id'); ?>
@@ -154,6 +159,11 @@ $grid->registerTableSort();
 		<!--USER-->
 		<td class="center">
 			<?php echo $this->escape($item->user_name); ?>
+		</td>
+
+		<!--TOKEN-->
+		<td class="center">
+			<input class="span12" type="text" disabled value="<?php echo $item->access_token; ?>" />
 		</td>
 
 		<!--ID-->

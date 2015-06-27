@@ -1,0 +1,8 @@
+{
+    "require": {
+        "asika/dom-parser": "1.0.*@stable"
+    },
+    "config" : {
+        "vendor-dir" : "lib"
+    }
+}
