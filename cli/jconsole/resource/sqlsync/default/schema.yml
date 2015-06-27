@@ -3,14 +3,14 @@
     from:
         - '#__assets'
     columns:
-        id: { Field: id, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
-        parent_id: { Field: parent_id, Type: int(11), 'Null': NO, Default: '0', Extra: '', Comment: 'Nested set parent.', From: [parent_id] }
-        lft: { Field: lft, Type: int(11), 'Null': NO, Default: '0', Extra: '', Comment: 'Nested set lft.', From: [lft] }
-        rgt: { Field: rgt, Type: int(11), 'Null': NO, Default: '0', Extra: '', Comment: 'Nested set rgt.', From: [rgt] }
-        level: { Field: level, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: '', Comment: 'The cached level in the nested tree.', From: [level] }
-        name: { Field: name, Type: varchar(50), 'Null': NO, Default: null, Extra: '', Comment: "The unique name for the asset.\n", From: [name] }
-        title: { Field: title, Type: varchar(100), 'Null': NO, Default: null, Extra: '', Comment: 'The descriptive title for the asset.', From: [title] }
-        rules: { Field: rules, Type: varchar(5120), 'Null': NO, Default: null, Extra: '', Comment: 'JSON encoded access control.', From: [rules] }
+        id: { Field: id, Type: 'int(10) unsigned', 'Null': 'NO', Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
+        parent_id: { Field: parent_id, Type: int(11), 'Null': 'NO', Default: '0', Extra: '', Comment: 'Nested set parent.', From: [parent_id] }
+        lft: { Field: lft, Type: int(11), 'Null': 'NO', Default: '0', Extra: '', Comment: 'Nested set lft.', From: [lft] }
+        rgt: { Field: rgt, Type: int(11), 'Null': 'NO', Default: '0', Extra: '', Comment: 'Nested set rgt.', From: [rgt] }
+        level: { Field: level, Type: 'int(10) unsigned', 'Null': 'NO', Default: null, Extra: '', Comment: 'The cached level in the nested tree.', From: [level] }
+        name: { Field: name, Type: varchar(50), 'Null': 'NO', Default: null, Extra: '', Comment: "The unique name for the asset.\n", From: [name] }
+        title: { Field: title, Type: varchar(100), 'Null': 'NO', Default: null, Extra: '', Comment: 'The descriptive title for the asset.', From: [title] }
+        rules: { Field: rules, Type: varchar(5120), 'Null': 'NO', Default: null, Extra: '', Comment: 'JSON encoded access control.', From: [rules] }
     index:
         - { Table: '#__assets', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__assets', Non_unique: '0', Key_name: idx_asset_name, Seq_in_index: '1', Column_name: name, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -55,9 +55,9 @@
     from:
         - '#__associations'
     columns:
-        id: { Field: id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: 'A reference to the associated item.', From: [id] }
-        context: { Field: context, Type: varchar(50), 'Null': NO, Default: null, Extra: '', Comment: 'The context of the associated item.', From: [context] }
-        key: { Field: key, Type: char(32), 'Null': NO, Default: null, Extra: '', Comment: 'The key for the association computed from an md5 on associated ids.', From: [key] }
+        id: { Field: id, Type: int(11), 'Null': 'NO', Default: null, Extra: '', Comment: 'A reference to the associated item.', From: [id] }
+        context: { Field: context, Type: varchar(50), 'Null': 'NO', Default: null, Extra: '', Comment: 'The context of the associated item.', From: [context] }
+        key: { Field: key, Type: char(32), 'Null': 'NO', Default: null, Extra: '', Comment: 'The key for the association computed from an md5 on associated ids.', From: [key] }
     index:
         - { Table: '#__associations', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: context, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__associations', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '2', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -67,33 +67,33 @@
     from:
         - '#__categories'
     columns:
-        id: { Field: id, Type: int(11), 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
-        asset_id: { Field: asset_id, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: 'FK to the #__assets table.', From: [asset_id] }
-        parent_id: { Field: parent_id, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [parent_id] }
-        lft: { Field: lft, Type: int(11), 'Null': NO, Default: '0', Extra: '', Comment: '', From: [lft] }
-        rgt: { Field: rgt, Type: int(11), 'Null': NO, Default: '0', Extra: '', Comment: '', From: [rgt] }
-        level: { Field: level, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [level] }
-        path: { Field: path, Type: varchar(255), 'Null': NO, Default: '', Extra: '', Comment: '', From: [path] }
-        extension: { Field: extension, Type: varchar(50), 'Null': NO, Default: '', Extra: '', Comment: '', From: [extension] }
-        title: { Field: title, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [title] }
-        alias: { Field: alias, Type: varchar(255), 'Null': NO, Default: '', Extra: '', Comment: '', From: [alias] }
-        note: { Field: note, Type: varchar(255), 'Null': NO, Default: '', Extra: '', Comment: '', From: [note] }
-        description: { Field: description, Type: mediumtext, 'Null': NO, Default: null, Extra: '', Comment: '', From: [description] }
-        published: { Field: published, Type: tinyint(1), 'Null': NO, Default: '0', Extra: '', Comment: '', From: [published] }
-        checked_out: { Field: checked_out, Type: 'int(11) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [checked_out] }
-        checked_out_time: { Field: checked_out_time, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [checked_out_time] }
-        access: { Field: access, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [access] }
-        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [params] }
-        metadesc: { Field: metadesc, Type: varchar(1024), 'Null': NO, Default: null, Extra: '', Comment: 'The meta description for the page.', From: [metadesc] }
-        metakey: { Field: metakey, Type: varchar(1024), 'Null': NO, Default: null, Extra: '', Comment: 'The meta keywords for the page.', From: [metakey] }
-        metadata: { Field: metadata, Type: varchar(2048), 'Null': NO, Default: null, Extra: '', Comment: 'JSON encoded metadata properties.', From: [metadata] }
-        created_user_id: { Field: created_user_id, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [created_user_id] }
-        created_time: { Field: created_time, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [created_time] }
-        modified_user_id: { Field: modified_user_id, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [modified_user_id] }
-        modified_time: { Field: modified_time, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [modified_time] }
-        hits: { Field: hits, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [hits] }
-        language: { Field: language, Type: char(7), 'Null': NO, Default: null, Extra: '', Comment: '', From: [language] }
-        version: { Field: version, Type: 'int(10) unsigned', 'Null': NO, Default: '1', Extra: '', Comment: '', From: [version] }
+        id: { Field: id, Type: int(11), 'Null': 'NO', Default: null, Extra: auto_increment, Comment: '', From: [id] }
+        asset_id: { Field: asset_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: 'FK to the #__assets table.', From: [asset_id] }
+        parent_id: { Field: parent_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [parent_id] }
+        lft: { Field: lft, Type: int(11), 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [lft] }
+        rgt: { Field: rgt, Type: int(11), 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [rgt] }
+        level: { Field: level, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [level] }
+        path: { Field: path, Type: varchar(255), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [path] }
+        extension: { Field: extension, Type: varchar(50), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [extension] }
+        title: { Field: title, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [title] }
+        alias: { Field: alias, Type: varchar(255), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [alias] }
+        note: { Field: note, Type: varchar(255), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [note] }
+        description: { Field: description, Type: mediumtext, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [description] }
+        published: { Field: published, Type: tinyint(1), 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [published] }
+        checked_out: { Field: checked_out, Type: 'int(11) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [checked_out] }
+        checked_out_time: { Field: checked_out_time, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [checked_out_time] }
+        access: { Field: access, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [access] }
+        params: { Field: params, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [params] }
+        metadesc: { Field: metadesc, Type: varchar(1024), 'Null': 'NO', Default: null, Extra: '', Comment: 'The meta description for the page.', From: [metadesc] }
+        metakey: { Field: metakey, Type: varchar(1024), 'Null': 'NO', Default: null, Extra: '', Comment: 'The meta keywords for the page.', From: [metakey] }
+        metadata: { Field: metadata, Type: varchar(2048), 'Null': 'NO', Default: null, Extra: '', Comment: 'JSON encoded metadata properties.', From: [metadata] }
+        created_user_id: { Field: created_user_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [created_user_id] }
+        created_time: { Field: created_time, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [created_time] }
+        modified_user_id: { Field: modified_user_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [modified_user_id] }
+        modified_time: { Field: modified_time, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [modified_time] }
+        hits: { Field: hits, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [hits] }
+        language: { Field: language, Type: char(7), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [language] }
+        version: { Field: version, Type: 'int(10) unsigned', 'Null': 'NO', Default: '1', Extra: '', Comment: '', From: [version] }
     index:
         - { Table: '#__categories', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__categories', Non_unique: '1', Key_name: cat_idx, Seq_in_index: '1', Column_name: extension, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -114,14 +114,14 @@
     from:
         - '#__content_types'
     columns:
-        type_id: { Field: type_id, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [type_id] }
-        type_title: { Field: type_title, Type: varchar(255), 'Null': NO, Default: '', Extra: '', Comment: '', From: [type_title] }
-        type_alias: { Field: type_alias, Type: varchar(255), 'Null': NO, Default: '', Extra: '', Comment: '', From: [type_alias] }
-        table: { Field: table, Type: varchar(255), 'Null': NO, Default: '', Extra: '', Comment: '', From: [table] }
-        rules: { Field: rules, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [rules] }
-        field_mappings: { Field: field_mappings, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [field_mappings] }
-        router: { Field: router, Type: varchar(255), 'Null': NO, Default: '', Extra: '', Comment: '', From: [router] }
-        content_history_options: { Field: content_history_options, Type: varchar(5120), 'Null': YES, Default: null, Extra: '', Comment: 'JSON string for com_contenthistory options', From: [content_history_options] }
+        type_id: { Field: type_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: null, Extra: auto_increment, Comment: '', From: [type_id] }
+        type_title: { Field: type_title, Type: varchar(255), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [type_title] }
+        type_alias: { Field: type_alias, Type: varchar(255), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [type_alias] }
+        table: { Field: table, Type: varchar(255), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [table] }
+        rules: { Field: rules, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [rules] }
+        field_mappings: { Field: field_mappings, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [field_mappings] }
+        router: { Field: router, Type: varchar(255), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [router] }
+        content_history_options: { Field: content_history_options, Type: varchar(5120), 'Null': 'YES', Default: null, Extra: '', Comment: 'JSON string for com_contenthistory options', From: [content_history_options] }
     index:
         - { Table: '#__content_types', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: type_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__content_types', Non_unique: '1', Key_name: idx_alias, Seq_in_index: '1', Column_name: type_alias, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -144,12 +144,12 @@
     from:
         - '#__contentitem_tag_map'
     columns:
-        type_alias: { Field: type_alias, Type: varchar(255), 'Null': NO, Default: '', Extra: '', Comment: '', From: [type_alias] }
-        core_content_id: { Field: core_content_id, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: '', Comment: 'PK from the core content table', From: [core_content_id] }
-        content_item_id: { Field: content_item_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: 'PK from the content type table', From: [content_item_id] }
-        tag_id: { Field: tag_id, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: '', Comment: 'PK from the tag table', From: [tag_id] }
-        tag_date: { Field: tag_date, Type: timestamp, 'Null': NO, Default: CURRENT_TIMESTAMP, Extra: 'on update CURRENT_TIMESTAMP', Comment: 'Date of most recent save for this tag-item', From: [tag_date] }
-        type_id: { Field: type_id, Type: mediumint(8), 'Null': NO, Default: null, Extra: '', Comment: 'PK from the content_type table', From: [type_id] }
+        type_alias: { Field: type_alias, Type: varchar(255), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [type_alias] }
+        core_content_id: { Field: core_content_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: null, Extra: '', Comment: 'PK from the core content table', From: [core_content_id] }
+        content_item_id: { Field: content_item_id, Type: int(11), 'Null': 'NO', Default: null, Extra: '', Comment: 'PK from the content type table', From: [content_item_id] }
+        tag_id: { Field: tag_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: null, Extra: '', Comment: 'PK from the tag table', From: [tag_id] }
+        tag_date: { Field: tag_date, Type: timestamp, 'Null': 'NO', Default: CURRENT_TIMESTAMP, Extra: 'on update CURRENT_TIMESTAMP', Comment: 'Date of most recent save for this tag-item', From: [tag_date] }
+        type_id: { Field: type_id, Type: mediumint(8), 'Null': 'NO', Default: null, Extra: '', Comment: 'PK from the content_type table', From: [type_id] }
     index:
         - { Table: '#__contentitem_tag_map', Non_unique: '0', Key_name: uc_ItemnameTagid, Seq_in_index: '1', Column_name: type_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__contentitem_tag_map', Non_unique: '0', Key_name: uc_ItemnameTagid, Seq_in_index: '2', Column_name: content_item_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -166,31 +166,31 @@
     from:
         - '#__core_log_searches'
     columns:
-        search_term: { Field: search_term, Type: varchar(128), 'Null': NO, Default: '', Extra: '', Comment: '', From: [search_term] }
-        hits: { Field: hits, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [hits] }
+        search_term: { Field: search_term, Type: varchar(128), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [search_term] }
+        hits: { Field: hits, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [hits] }
     index: {  }
 '#__extensions':
     name: '#__extensions'
     from:
         - '#__extensions'
     columns:
-        extension_id: { Field: extension_id, Type: int(11), 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [extension_id] }
-        name: { Field: name, Type: varchar(100), 'Null': NO, Default: null, Extra: '', Comment: '', From: [name] }
-        type: { Field: type, Type: varchar(20), 'Null': NO, Default: null, Extra: '', Comment: '', From: [type] }
-        element: { Field: element, Type: varchar(100), 'Null': NO, Default: null, Extra: '', Comment: '', From: [element] }
-        folder: { Field: folder, Type: varchar(100), 'Null': NO, Default: null, Extra: '', Comment: '', From: [folder] }
-        client_id: { Field: client_id, Type: tinyint(3), 'Null': NO, Default: null, Extra: '', Comment: '', From: [client_id] }
-        enabled: { Field: enabled, Type: tinyint(3), 'Null': NO, Default: '1', Extra: '', Comment: '', From: [enabled] }
-        access: { Field: access, Type: 'int(10) unsigned', 'Null': NO, Default: '1', Extra: '', Comment: '', From: [access] }
-        protected: { Field: protected, Type: tinyint(3), 'Null': NO, Default: '0', Extra: '', Comment: '', From: [protected] }
-        manifest_cache: { Field: manifest_cache, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [manifest_cache] }
-        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [params] }
-        custom_data: { Field: custom_data, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [custom_data] }
-        system_data: { Field: system_data, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [system_data] }
-        checked_out: { Field: checked_out, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [checked_out] }
-        checked_out_time: { Field: checked_out_time, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [checked_out_time] }
-        ordering: { Field: ordering, Type: int(11), 'Null': YES, Default: '0', Extra: '', Comment: '', From: [ordering] }
-        state: { Field: state, Type: int(11), 'Null': YES, Default: '0', Extra: '', Comment: '', From: [state] }
+        extension_id: { Field: extension_id, Type: int(11), 'Null': 'NO', Default: null, Extra: auto_increment, Comment: '', From: [extension_id] }
+        name: { Field: name, Type: varchar(100), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [name] }
+        type: { Field: type, Type: varchar(20), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [type] }
+        element: { Field: element, Type: varchar(100), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [element] }
+        folder: { Field: folder, Type: varchar(100), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [folder] }
+        client_id: { Field: client_id, Type: tinyint(3), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [client_id] }
+        enabled: { Field: enabled, Type: tinyint(3), 'Null': 'NO', Default: '1', Extra: '', Comment: '', From: [enabled] }
+        access: { Field: access, Type: 'int(10) unsigned', 'Null': 'NO', Default: '1', Extra: '', Comment: '', From: [access] }
+        protected: { Field: protected, Type: tinyint(3), 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [protected] }
+        manifest_cache: { Field: manifest_cache, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [manifest_cache] }
+        params: { Field: params, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [params] }
+        custom_data: { Field: custom_data, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [custom_data] }
+        system_data: { Field: system_data, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [system_data] }
+        checked_out: { Field: checked_out, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [checked_out] }
+        checked_out_time: { Field: checked_out_time, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [checked_out_time] }
+        ordering: { Field: ordering, Type: int(11), 'Null': 'YES', Default: '0', Extra: '', Comment: '', From: [ordering] }
+        state: { Field: state, Type: int(11), 'Null': 'YES', Default: '0', Extra: '', Comment: '', From: [state] }
     index:
         - { Table: '#__extensions', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: extension_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__extensions', Non_unique: '1', Key_name: element_clientid, Seq_in_index: '1', Column_name: element, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -224,7 +224,7 @@
         - ['29', com_tags, component, com_tags, '', '1', '1', '1', '0', '{"name":"com_tags","type":"component","creationDate":"December 2013","author":"Joomla! Project","copyright":"(C) 2005 - 2015 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.1.0","description":"COM_TAGS_XML_DESCRIPTION","group":"","filename":"tags"}', '{"tag_layout":"_:default","save_history":"1","history_limit":5,"show_tag_title":"0","tag_list_show_tag_image":"0","tag_list_show_tag_description":"0","tag_list_image":"","show_tag_num_items":"0","tag_list_orderby":"title","tag_list_orderby_direction":"ASC","show_headings":"0","tag_list_show_date":"0","tag_list_show_item_image":"0","tag_list_show_item_description":"0","tag_list_item_maximum_characters":0,"return_any_or_all":"1","include_children":"0","maximum":200,"tag_list_language_filter":"all","tags_layout":"_:default","all_tags_orderby":"title","all_tags_orderby_direction":"ASC","all_tags_show_tag_image":"0","all_tags_show_tag_descripion":"0","all_tags_tag_maximum_characters":20,"all_tags_show_tag_hits":"0","filter_field":"1","show_pagination_limit":"1","show_pagination":"2","show_pagination_results":"1","tag_field_ajax_mode":"1","show_feed_link":"1"}', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['101', SimplePie, library, simplepie, '', '0', '1', '1', '0', '{"name":"SimplePie","type":"library","creationDate":"2004","author":"SimplePie","copyright":"Copyright (c) 2004-2009, Ryan Parman and Geoffrey Sneddon","authorEmail":"","authorUrl":"http:\/\/simplepie.org\/","version":"1.2","description":"LIB_SIMPLEPIE_XML_DESCRIPTION","group":"","filename":"simplepie"}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['102', phputf8, library, phputf8, '', '0', '1', '1', '0', '{"name":"phputf8","type":"library","creationDate":"2006","author":"Harry Fuecks","copyright":"Copyright various authors","authorEmail":"hfuecks@gmail.com","authorUrl":"http:\/\/sourceforge.net\/projects\/phputf8","version":"0.5","description":"LIB_PHPUTF8_XML_DESCRIPTION","group":"","filename":"phputf8"}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
-        - ['103', 'Joomla! Platform', library, joomla, '', '0', '1', '1', '0', '{"name":"Joomla! Platform","type":"library","creationDate":"2008","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2015 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"http:\/\/www.joomla.org","version":"13.1","description":"LIB_JOOMLA_XML_DESCRIPTION","group":"","filename":"joomla"}', '{"mediaversion":"4ccbcdd5108176170a29563a600de8eb"}', '', '', '0', '0000-00-00 00:00:00', '0', '0']
+        - ['103', 'Joomla! Platform', library, joomla, '', '0', '1', '1', '0', '{"name":"Joomla! Platform","type":"library","creationDate":"2008","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2015 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"http:\/\/www.joomla.org","version":"13.1","description":"LIB_JOOMLA_XML_DESCRIPTION","group":"","filename":"joomla"}', '{"mediaversion":"aca4b8510eb35df48ad5f20476ecc768"}', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['104', 'IDNA Convert', library, idna_convert, '', '0', '1', '1', '0', '{"name":"IDNA Convert","type":"library","creationDate":"2004","author":"phlyLabs","copyright":"2004-2011 phlyLabs Berlin, http:\/\/phlylabs.de","authorEmail":"phlymail@phlylabs.de","authorUrl":"http:\/\/phlylabs.de","version":"0.8.0","description":"LIB_IDNA_XML_DESCRIPTION","group":"","filename":"idna_convert"}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['105', FOF, library, fof, '', '0', '1', '1', '0', '{"name":"FOF","type":"library","creationDate":"2014-11-28 11:21:40","author":"Nicholas K. Dionysopoulos \/ Akeeba Ltd","copyright":"(C)2011-2014 Nicholas K. Dionysopoulos","authorEmail":"nicholas@akeebabackup.com","authorUrl":"https:\/\/www.akeebabackup.com","version":"2.4.1","description":"LIB_FOF_XML_DESCRIPTION","group":"","filename":"fof"}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['106', PHPass, library, phpass, '', '0', '1', '1', '0', '{"name":"PHPass","type":"library","creationDate":"2004-2006","author":"Solar Designer","copyright":"","authorEmail":"solar@openwall.com","authorUrl":"http:\/\/www.openwall.com\/phpass\/","version":"0.3","description":"LIB_PHPASS_XML_DESCRIPTION","group":"","filename":"phpass"}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
@@ -287,19 +287,19 @@
     from:
         - '#__languages'
     columns:
-        lang_id: { Field: lang_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [lang_id] }
-        lang_code: { Field: lang_code, Type: char(7), 'Null': NO, Default: null, Extra: '', Comment: '', From: [lang_code] }
-        title: { Field: title, Type: varchar(50), 'Null': NO, Default: null, Extra: '', Comment: '', From: [title] }
-        title_native: { Field: title_native, Type: varchar(50), 'Null': NO, Default: null, Extra: '', Comment: '', From: [title_native] }
-        sef: { Field: sef, Type: varchar(50), 'Null': NO, Default: null, Extra: '', Comment: '', From: [sef] }
-        image: { Field: image, Type: varchar(50), 'Null': NO, Default: null, Extra: '', Comment: '', From: [image] }
-        description: { Field: description, Type: varchar(512), 'Null': NO, Default: null, Extra: '', Comment: '', From: [description] }
-        metakey: { Field: metakey, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [metakey] }
-        metadesc: { Field: metadesc, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [metadesc] }
-        sitename: { Field: sitename, Type: varchar(1024), 'Null': NO, Default: '', Extra: '', Comment: '', From: [sitename] }
-        published: { Field: published, Type: int(11), 'Null': NO, Default: '0', Extra: '', Comment: '', From: [published] }
-        access: { Field: access, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [access] }
-        ordering: { Field: ordering, Type: int(11), 'Null': NO, Default: '0', Extra: '', Comment: '', From: [ordering] }
+        lang_id: { Field: lang_id, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: auto_increment, Comment: '', From: [lang_id] }
+        lang_code: { Field: lang_code, Type: char(7), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [lang_code] }
+        title: { Field: title, Type: varchar(50), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [title] }
+        title_native: { Field: title_native, Type: varchar(50), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [title_native] }
+        sef: { Field: sef, Type: varchar(50), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [sef] }
+        image: { Field: image, Type: varchar(50), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [image] }
+        description: { Field: description, Type: varchar(512), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [description] }
+        metakey: { Field: metakey, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [metakey] }
+        metadesc: { Field: metadesc, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [metadesc] }
+        sitename: { Field: sitename, Type: varchar(1024), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [sitename] }
+        published: { Field: published, Type: int(11), 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [published] }
+        access: { Field: access, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [access] }
+        ordering: { Field: ordering, Type: int(11), 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [ordering] }
     index:
         - { Table: '#__languages', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: lang_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__languages', Non_unique: '0', Key_name: idx_sef, Seq_in_index: '1', Column_name: sef, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -314,30 +314,30 @@
     from:
         - '#__menu'
     columns:
-        id: { Field: id, Type: int(11), 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
-        menutype: { Field: menutype, Type: varchar(24), 'Null': NO, Default: null, Extra: '', Comment: 'The type of menu this item belongs to. FK to #__menu_types.menutype', From: [menutype] }
-        title: { Field: title, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: 'The display title of the menu item.', From: [title] }
-        alias: { Field: alias, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: 'The SEF alias of the menu item.', From: [alias] }
-        note: { Field: note, Type: varchar(255), 'Null': NO, Default: '', Extra: '', Comment: '', From: [note] }
-        path: { Field: path, Type: varchar(1024), 'Null': NO, Default: null, Extra: '', Comment: 'The computed path of the menu item based on the alias field.', From: [path] }
-        link: { Field: link, Type: varchar(1024), 'Null': NO, Default: null, Extra: '', Comment: 'The actually link the menu item refers to.', From: [link] }
-        type: { Field: type, Type: varchar(16), 'Null': NO, Default: null, Extra: '', Comment: 'The type of link: Component, URL, Alias, Separator', From: [type] }
-        published: { Field: published, Type: tinyint(4), 'Null': NO, Default: '0', Extra: '', Comment: 'The published state of the menu link.', From: [published] }
-        parent_id: { Field: parent_id, Type: 'int(10) unsigned', 'Null': NO, Default: '1', Extra: '', Comment: 'The parent menu item in the menu tree.', From: [parent_id] }
-        level: { Field: level, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: 'The relative level in the tree.', From: [level] }
-        component_id: { Field: component_id, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: 'FK to #__extensions.id', From: [component_id] }
-        checked_out: { Field: checked_out, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: 'FK to #__users.id', From: [checked_out] }
-        checked_out_time: { Field: checked_out_time, Type: timestamp, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: 'The time the menu item was checked out.', From: [checked_out_time] }
-        browserNav: { Field: browserNav, Type: tinyint(4), 'Null': NO, Default: '0', Extra: '', Comment: 'The click behaviour of the link.', From: [browserNav] }
-        access: { Field: access, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: 'The access level required to view the menu item.', From: [access] }
-        img: { Field: img, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: 'The image of the menu item.', From: [img] }
-        template_style_id: { Field: template_style_id, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [template_style_id] }
-        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: 'JSON encoded data for the menu item.', From: [params] }
-        lft: { Field: lft, Type: int(11), 'Null': NO, Default: '0', Extra: '', Comment: 'Nested set lft.', From: [lft] }
-        rgt: { Field: rgt, Type: int(11), 'Null': NO, Default: '0', Extra: '', Comment: 'Nested set rgt.', From: [rgt] }
-        home: { Field: home, Type: 'tinyint(3) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: 'Indicates if this menu item is the home or default page.', From: [home] }
-        language: { Field: language, Type: char(7), 'Null': NO, Default: '', Extra: '', Comment: '', From: [language] }
-        client_id: { Field: client_id, Type: tinyint(4), 'Null': NO, Default: '0', Extra: '', Comment: '', From: [client_id] }
+        id: { Field: id, Type: int(11), 'Null': 'NO', Default: null, Extra: auto_increment, Comment: '', From: [id] }
+        menutype: { Field: menutype, Type: varchar(24), 'Null': 'NO', Default: null, Extra: '', Comment: 'The type of menu this item belongs to. FK to #__menu_types.menutype', From: [menutype] }
+        title: { Field: title, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: 'The display title of the menu item.', From: [title] }
+        alias: { Field: alias, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: 'The SEF alias of the menu item.', From: [alias] }
+        note: { Field: note, Type: varchar(255), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [note] }
+        path: { Field: path, Type: varchar(1024), 'Null': 'NO', Default: null, Extra: '', Comment: 'The computed path of the menu item based on the alias field.', From: [path] }
+        link: { Field: link, Type: varchar(1024), 'Null': 'NO', Default: null, Extra: '', Comment: 'The actually link the menu item refers to.', From: [link] }
+        type: { Field: type, Type: varchar(16), 'Null': 'NO', Default: null, Extra: '', Comment: 'The type of link: Component, URL, Alias, Separator', From: [type] }
+        published: { Field: published, Type: tinyint(4), 'Null': 'NO', Default: '0', Extra: '', Comment: 'The published state of the menu link.', From: [published] }
+        parent_id: { Field: parent_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: '1', Extra: '', Comment: 'The parent menu item in the menu tree.', From: [parent_id] }
+        level: { Field: level, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: 'The relative level in the tree.', From: [level] }
+        component_id: { Field: component_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: 'FK to #__extensions.id', From: [component_id] }
+        checked_out: { Field: checked_out, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: 'FK to #__users.id', From: [checked_out] }
+        checked_out_time: { Field: checked_out_time, Type: timestamp, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: 'The time the menu item was checked out.', From: [checked_out_time] }
+        browserNav: { Field: browserNav, Type: tinyint(4), 'Null': 'NO', Default: '0', Extra: '', Comment: 'The click behaviour of the link.', From: [browserNav] }
+        access: { Field: access, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: 'The access level required to view the menu item.', From: [access] }
+        img: { Field: img, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: 'The image of the menu item.', From: [img] }
+        template_style_id: { Field: template_style_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [template_style_id] }
+        params: { Field: params, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: 'JSON encoded data for the menu item.', From: [params] }
+        lft: { Field: lft, Type: int(11), 'Null': 'NO', Default: '0', Extra: '', Comment: 'Nested set lft.', From: [lft] }
+        rgt: { Field: rgt, Type: int(11), 'Null': 'NO', Default: '0', Extra: '', Comment: 'Nested set rgt.', From: [rgt] }
+        home: { Field: home, Type: 'tinyint(3) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: 'Indicates if this menu item is the home or default page.', From: [home] }
+        language: { Field: language, Type: char(7), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [language] }
+        client_id: { Field: client_id, Type: tinyint(4), 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [client_id] }
     index:
         - { Table: '#__menu', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__menu', Non_unique: '0', Key_name: idx_client_id_parent_id_alias_language, Seq_in_index: '1', Column_name: client_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -365,10 +365,10 @@
     from:
         - '#__menu_types'
     columns:
-        id: { Field: id, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
-        menutype: { Field: menutype, Type: varchar(24), 'Null': NO, Default: null, Extra: '', Comment: '', From: [menutype] }
-        title: { Field: title, Type: varchar(48), 'Null': NO, Default: null, Extra: '', Comment: '', From: [title] }
-        description: { Field: description, Type: varchar(255), 'Null': NO, Default: '', Extra: '', Comment: '', From: [description] }
+        id: { Field: id, Type: 'int(10) unsigned', 'Null': 'NO', Default: null, Extra: auto_increment, Comment: '', From: [id] }
+        menutype: { Field: menutype, Type: varchar(24), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [menutype] }
+        title: { Field: title, Type: varchar(48), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [title] }
+        description: { Field: description, Type: varchar(255), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [description] }
     index:
         - { Table: '#__menu_types', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__menu_types', Non_unique: '0', Key_name: idx_menutype, Seq_in_index: '1', Column_name: menutype, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -379,29 +379,29 @@
     from:
         - '#__modules'
     columns:
-        id: { Field: id, Type: int(11), 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
-        asset_id: { Field: asset_id, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: 'FK to the #__assets table.', From: [asset_id] }
-        title: { Field: title, Type: varchar(100), 'Null': NO, Default: '', Extra: '', Comment: '', From: [title] }
-        note: { Field: note, Type: varchar(255), 'Null': NO, Default: '', Extra: '', Comment: '', From: [note] }
-        content: { Field: content, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [content] }
-        ordering: { Field: ordering, Type: int(11), 'Null': NO, Default: '0', Extra: '', Comment: '', From: [ordering] }
-        position: { Field: position, Type: varchar(50), 'Null': NO, Default: '', Extra: '', Comment: '', From: [position] }
-        checked_out: { Field: checked_out, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [checked_out] }
-        checked_out_time: { Field: checked_out_time, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [checked_out_time] }
-        publish_up: { Field: publish_up, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [publish_up] }
-        publish_down: { Field: publish_down, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [publish_down] }
-        published: { Field: published, Type: tinyint(1), 'Null': NO, Default: '0', Extra: '', Comment: '', From: [published] }
-        module: { Field: module, Type: varchar(50), 'Null': YES, Default: null, Extra: '', Comment: '', From: [module] }
-        access: { Field: access, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [access] }
-        showtitle: { Field: showtitle, Type: 'tinyint(3) unsigned', 'Null': NO, Default: '1', Extra: '', Comment: '', From: [showtitle] }
-        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [params] }
-        client_id: { Field: client_id, Type: tinyint(4), 'Null': NO, Default: '0', Extra: '', Comment: '', From: [client_id] }
-        language: { Field: language, Type: char(7), 'Null': NO, Default: null, Extra: '', Comment: '', From: [language] }
+        id: { Field: id, Type: int(11), 'Null': 'NO', Default: null, Extra: auto_increment, Comment: '', From: [id] }
+        asset_id: { Field: asset_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: 'FK to the #__assets table.', From: [asset_id] }
+        title: { Field: title, Type: varchar(100), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [title] }
+        note: { Field: note, Type: varchar(255), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [note] }
+        content: { Field: content, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [content] }
+        ordering: { Field: ordering, Type: int(11), 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [ordering] }
+        position: { Field: position, Type: varchar(50), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [position] }
+        checked_out: { Field: checked_out, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [checked_out] }
+        checked_out_time: { Field: checked_out_time, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [checked_out_time] }
+        publish_up: { Field: publish_up, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [publish_up] }
+        publish_down: { Field: publish_down, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [publish_down] }
+        published: { Field: published, Type: tinyint(1), 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [published] }
+        module: { Field: module, Type: varchar(50), 'Null': 'YES', Default: null, Extra: '', Comment: '', From: [module] }
+        access: { Field: access, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [access] }
+        showtitle: { Field: showtitle, Type: 'tinyint(3) unsigned', 'Null': 'NO', Default: '1', Extra: '', Comment: '', From: [showtitle] }
+        params: { Field: params, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [params] }
+        client_id: { Field: client_id, Type: tinyint(4), 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [client_id] }
+        language: { Field: language, Type: char(7), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [language] }
     index:
         - { Table: '#__modules', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__modules', Non_unique: '1', Key_name: published, Seq_in_index: '1', Column_name: published, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__modules', Non_unique: '1', Key_name: published, Seq_in_index: '2', Column_name: access, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
-        - { Table: '#__modules', Non_unique: '1', Key_name: newsfeeds, Seq_in_index: '1', Column_name: module, Sub_part: null, 'Null': YES, Comment: '', Index_comment: '' }
+        - { Table: '#__modules', Non_unique: '1', Key_name: newsfeeds, Seq_in_index: '1', Column_name: module, Sub_part: null, 'Null': 'YES', Comment: '', Index_comment: '' }
         - { Table: '#__modules', Non_unique: '1', Key_name: newsfeeds, Seq_in_index: '2', Column_name: published, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__modules', Non_unique: '1', Key_name: idx_language, Seq_in_index: '1', Column_name: language, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
     data:
@@ -420,8 +420,8 @@
     from:
         - '#__modules_menu'
     columns:
-        moduleid: { Field: moduleid, Type: int(11), 'Null': NO, Default: '0', Extra: '', Comment: '', From: [moduleid] }
-        menuid: { Field: menuid, Type: int(11), 'Null': NO, Default: '0', Extra: '', Comment: '', From: [menuid] }
+        moduleid: { Field: moduleid, Type: int(11), 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [moduleid] }
+        menuid: { Field: menuid, Type: int(11), 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [menuid] }
     index:
         - { Table: '#__modules_menu', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: moduleid, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__modules_menu', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '2', Column_name: menuid, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -443,10 +443,10 @@
     from:
         - '#__overrider'
     columns:
-        id: { Field: id, Type: int(10), 'Null': NO, Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
-        constant: { Field: constant, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [constant] }
-        string: { Field: string, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [string] }
-        file: { Field: file, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [file] }
+        id: { Field: id, Type: int(10), 'Null': 'NO', Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
+        constant: { Field: constant, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [constant] }
+        string: { Field: string, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [string] }
+        file: { Field: file, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [file] }
     index:
         - { Table: '#__overrider', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
 '#__redirect_links':
@@ -454,16 +454,16 @@
     from:
         - '#__redirect_links'
     columns:
-        id: { Field: id, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
-        old_url: { Field: old_url, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [old_url] }
-        new_url: { Field: new_url, Type: varchar(255), 'Null': YES, Default: null, Extra: '', Comment: '', From: [new_url] }
-        referer: { Field: referer, Type: varchar(150), 'Null': NO, Default: null, Extra: '', Comment: '', From: [referer] }
-        comment: { Field: comment, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [comment] }
-        hits: { Field: hits, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [hits] }
-        published: { Field: published, Type: tinyint(4), 'Null': NO, Default: null, Extra: '', Comment: '', From: [published] }
-        created_date: { Field: created_date, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [created_date] }
-        modified_date: { Field: modified_date, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [modified_date] }
-        header: { Field: header, Type: smallint(3), 'Null': NO, Default: '301', Extra: '', Comment: '', From: [header] }
+        id: { Field: id, Type: 'int(10) unsigned', 'Null': 'NO', Default: null, Extra: auto_increment, Comment: '', From: [id] }
+        old_url: { Field: old_url, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [old_url] }
+        new_url: { Field: new_url, Type: varchar(255), 'Null': 'YES', Default: null, Extra: '', Comment: '', From: [new_url] }
+        referer: { Field: referer, Type: varchar(150), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [referer] }
+        comment: { Field: comment, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [comment] }
+        hits: { Field: hits, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [hits] }
+        published: { Field: published, Type: tinyint(4), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [published] }
+        created_date: { Field: created_date, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [created_date] }
+        modified_date: { Field: modified_date, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [modified_date] }
+        header: { Field: header, Type: smallint(3), 'Null': 'NO', Default: '301', Extra: '', Comment: '', From: [header] }
     index:
         - { Table: '#__redirect_links', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__redirect_links', Non_unique: '0', Key_name: idx_link_old, Seq_in_index: '1', Column_name: old_url, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -473,8 +473,8 @@
     from:
         - '#__schemas'
     columns:
-        extension_id: { Field: extension_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [extension_id] }
-        version_id: { Field: version_id, Type: varchar(20), 'Null': NO, Default: null, Extra: '', Comment: '', From: [version_id] }
+        extension_id: { Field: extension_id, Type: int(11), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [extension_id] }
+        version_id: { Field: version_id, Type: varchar(20), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [version_id] }
     index:
         - { Table: '#__schemas', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: extension_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__schemas', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '2', Column_name: version_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -485,52 +485,52 @@
     from:
         - '#__session'
     columns:
-        session_id: { Field: session_id, Type: varchar(200), 'Null': NO, Default: '', Extra: '', Comment: '', From: [session_id] }
-        client_id: { Field: client_id, Type: 'tinyint(3) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [client_id] }
-        guest: { Field: guest, Type: 'tinyint(4) unsigned', 'Null': YES, Default: '1', Extra: '', Comment: '', From: [guest] }
-        time: { Field: time, Type: varchar(14), 'Null': YES, Default: '', Extra: '', Comment: '', From: [time] }
-        data: { Field: data, Type: mediumtext, 'Null': YES, Default: null, Extra: '', Comment: '', From: [data] }
-        userid: { Field: userid, Type: int(11), 'Null': YES, Default: '0', Extra: '', Comment: '', From: [userid] }
-        username: { Field: username, Type: varchar(150), 'Null': YES, Default: '', Extra: '', Comment: '', From: [username] }
+        session_id: { Field: session_id, Type: varchar(200), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [session_id] }
+        client_id: { Field: client_id, Type: 'tinyint(3) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [client_id] }
+        guest: { Field: guest, Type: 'tinyint(4) unsigned', 'Null': 'YES', Default: '1', Extra: '', Comment: '', From: [guest] }
+        time: { Field: time, Type: varchar(14), 'Null': 'YES', Default: '', Extra: '', Comment: '', From: [time] }
+        data: { Field: data, Type: mediumtext, 'Null': 'YES', Default: null, Extra: '', Comment: '', From: [data] }
+        userid: { Field: userid, Type: int(11), 'Null': 'YES', Default: '0', Extra: '', Comment: '', From: [userid] }
+        username: { Field: username, Type: varchar(150), 'Null': 'YES', Default: '', Extra: '', Comment: '', From: [username] }
     index:
         - { Table: '#__session', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: session_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
-        - { Table: '#__session', Non_unique: '1', Key_name: userid, Seq_in_index: '1', Column_name: userid, Sub_part: null, 'Null': YES, Comment: '', Index_comment: '' }
-        - { Table: '#__session', Non_unique: '1', Key_name: time, Seq_in_index: '1', Column_name: time, Sub_part: null, 'Null': YES, Comment: '', Index_comment: '' }
+        - { Table: '#__session', Non_unique: '1', Key_name: userid, Seq_in_index: '1', Column_name: userid, Sub_part: null, 'Null': 'YES', Comment: '', Index_comment: '' }
+        - { Table: '#__session', Non_unique: '1', Key_name: time, Seq_in_index: '1', Column_name: time, Sub_part: null, 'Null': 'YES', Comment: '', Index_comment: '' }
 '#__tags':
     name: '#__tags'
     from:
         - '#__tags'
     columns:
-        id: { Field: id, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
-        parent_id: { Field: parent_id, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [parent_id] }
-        lft: { Field: lft, Type: int(11), 'Null': NO, Default: '0', Extra: '', Comment: '', From: [lft] }
-        rgt: { Field: rgt, Type: int(11), 'Null': NO, Default: '0', Extra: '', Comment: '', From: [rgt] }
-        level: { Field: level, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [level] }
-        path: { Field: path, Type: varchar(255), 'Null': NO, Default: '', Extra: '', Comment: '', From: [path] }
-        title: { Field: title, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [title] }
-        alias: { Field: alias, Type: varchar(255), 'Null': NO, Default: '', Extra: '', Comment: '', From: [alias] }
-        note: { Field: note, Type: varchar(255), 'Null': NO, Default: '', Extra: '', Comment: '', From: [note] }
-        description: { Field: description, Type: mediumtext, 'Null': NO, Default: null, Extra: '', Comment: '', From: [description] }
-        published: { Field: published, Type: tinyint(1), 'Null': NO, Default: '0', Extra: '', Comment: '', From: [published] }
-        checked_out: { Field: checked_out, Type: 'int(11) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [checked_out] }
-        checked_out_time: { Field: checked_out_time, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [checked_out_time] }
-        access: { Field: access, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [access] }
-        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [params] }
-        metadesc: { Field: metadesc, Type: varchar(1024), 'Null': NO, Default: null, Extra: '', Comment: 'The meta description for the page.', From: [metadesc] }
-        metakey: { Field: metakey, Type: varchar(1024), 'Null': NO, Default: null, Extra: '', Comment: 'The meta keywords for the page.', From: [metakey] }
-        metadata: { Field: metadata, Type: varchar(2048), 'Null': NO, Default: null, Extra: '', Comment: 'JSON encoded metadata properties.', From: [metadata] }
-        created_user_id: { Field: created_user_id, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [created_user_id] }
-        created_time: { Field: created_time, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [created_time] }
-        created_by_alias: { Field: created_by_alias, Type: varchar(255), 'Null': NO, Default: '', Extra: '', Comment: '', From: [created_by_alias] }
-        modified_user_id: { Field: modified_user_id, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [modified_user_id] }
-        modified_time: { Field: modified_time, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [modified_time] }
-        images: { Field: images, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [images] }
-        urls: { Field: urls, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [urls] }
-        hits: { Field: hits, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [hits] }
-        language: { Field: language, Type: char(7), 'Null': NO, Default: null, Extra: '', Comment: '', From: [language] }
-        version: { Field: version, Type: 'int(10) unsigned', 'Null': NO, Default: '1', Extra: '', Comment: '', From: [version] }
-        publish_up: { Field: publish_up, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [publish_up] }
-        publish_down: { Field: publish_down, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [publish_down] }
+        id: { Field: id, Type: 'int(10) unsigned', 'Null': 'NO', Default: null, Extra: auto_increment, Comment: '', From: [id] }
+        parent_id: { Field: parent_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [parent_id] }
+        lft: { Field: lft, Type: int(11), 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [lft] }
+        rgt: { Field: rgt, Type: int(11), 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [rgt] }
+        level: { Field: level, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [level] }
+        path: { Field: path, Type: varchar(255), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [path] }
+        title: { Field: title, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [title] }
+        alias: { Field: alias, Type: varchar(255), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [alias] }
+        note: { Field: note, Type: varchar(255), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [note] }
+        description: { Field: description, Type: mediumtext, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [description] }
+        published: { Field: published, Type: tinyint(1), 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [published] }
+        checked_out: { Field: checked_out, Type: 'int(11) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [checked_out] }
+        checked_out_time: { Field: checked_out_time, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [checked_out_time] }
+        access: { Field: access, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [access] }
+        params: { Field: params, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [params] }
+        metadesc: { Field: metadesc, Type: varchar(1024), 'Null': 'NO', Default: null, Extra: '', Comment: 'The meta description for the page.', From: [metadesc] }
+        metakey: { Field: metakey, Type: varchar(1024), 'Null': 'NO', Default: null, Extra: '', Comment: 'The meta keywords for the page.', From: [metakey] }
+        metadata: { Field: metadata, Type: varchar(2048), 'Null': 'NO', Default: null, Extra: '', Comment: 'JSON encoded metadata properties.', From: [metadata] }
+        created_user_id: { Field: created_user_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [created_user_id] }
+        created_time: { Field: created_time, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [created_time] }
+        created_by_alias: { Field: created_by_alias, Type: varchar(255), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [created_by_alias] }
+        modified_user_id: { Field: modified_user_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [modified_user_id] }
+        modified_time: { Field: modified_time, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [modified_time] }
+        images: { Field: images, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [images] }
+        urls: { Field: urls, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [urls] }
+        hits: { Field: hits, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [hits] }
+        language: { Field: language, Type: char(7), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [language] }
+        version: { Field: version, Type: 'int(10) unsigned', 'Null': 'NO', Default: '1', Extra: '', Comment: '', From: [version] }
+        publish_up: { Field: publish_up, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [publish_up] }
+        publish_down: { Field: publish_down, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [publish_down] }
     index:
         - { Table: '#__tags', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__tags', Non_unique: '1', Key_name: tag_idx, Seq_in_index: '1', Column_name: published, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -549,12 +549,12 @@
     from:
         - '#__template_styles'
     columns:
-        id: { Field: id, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
-        template: { Field: template, Type: varchar(50), 'Null': NO, Default: '', Extra: '', Comment: '', From: [template] }
-        client_id: { Field: client_id, Type: 'tinyint(1) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [client_id] }
-        home: { Field: home, Type: char(7), 'Null': NO, Default: '0', Extra: '', Comment: '', From: [home] }
-        title: { Field: title, Type: varchar(255), 'Null': NO, Default: '', Extra: '', Comment: '', From: [title] }
-        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [params] }
+        id: { Field: id, Type: 'int(10) unsigned', 'Null': 'NO', Default: null, Extra: auto_increment, Comment: '', From: [id] }
+        template: { Field: template, Type: varchar(50), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [template] }
+        client_id: { Field: client_id, Type: 'tinyint(1) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [client_id] }
+        home: { Field: home, Type: char(7), 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [home] }
+        title: { Field: title, Type: varchar(255), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [title] }
+        params: { Field: params, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [params] }
     index:
         - { Table: '#__template_styles', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__template_styles', Non_unique: '1', Key_name: idx_template, Seq_in_index: '1', Column_name: template, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -570,10 +570,10 @@
     from:
         - '#__ucm_base'
     columns:
-        ucm_id: { Field: ucm_id, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [ucm_id] }
-        ucm_item_id: { Field: ucm_item_id, Type: int(10), 'Null': NO, Default: null, Extra: '', Comment: '', From: [ucm_item_id] }
-        ucm_type_id: { Field: ucm_type_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [ucm_type_id] }
-        ucm_language_id: { Field: ucm_language_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [ucm_language_id] }
+        ucm_id: { Field: ucm_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [ucm_id] }
+        ucm_item_id: { Field: ucm_item_id, Type: int(10), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [ucm_item_id] }
+        ucm_type_id: { Field: ucm_type_id, Type: int(11), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [ucm_type_id] }
+        ucm_language_id: { Field: ucm_language_id, Type: int(11), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [ucm_language_id] }
     index:
         - { Table: '#__ucm_base', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: ucm_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__ucm_base', Non_unique: '1', Key_name: idx_ucm_item_id, Seq_in_index: '1', Column_name: ucm_item_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -584,38 +584,38 @@
     from:
         - '#__ucm_content'
     columns:
-        core_content_id: { Field: core_content_id, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [core_content_id] }
-        core_type_alias: { Field: core_type_alias, Type: varchar(255), 'Null': NO, Default: '', Extra: '', Comment: 'FK to the content types table', From: [core_type_alias] }
-        core_title: { Field: core_title, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [core_title] }
-        core_alias: { Field: core_alias, Type: varchar(255), 'Null': NO, Default: '', Extra: '', Comment: '', From: [core_alias] }
-        core_body: { Field: core_body, Type: mediumtext, 'Null': NO, Default: null, Extra: '', Comment: '', From: [core_body] }
-        core_state: { Field: core_state, Type: tinyint(1), 'Null': NO, Default: '0', Extra: '', Comment: '', From: [core_state] }
-        core_checked_out_time: { Field: core_checked_out_time, Type: varchar(255), 'Null': NO, Default: '', Extra: '', Comment: '', From: [core_checked_out_time] }
-        core_checked_out_user_id: { Field: core_checked_out_user_id, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [core_checked_out_user_id] }
-        core_access: { Field: core_access, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [core_access] }
-        core_params: { Field: core_params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [core_params] }
-        core_featured: { Field: core_featured, Type: 'tinyint(4) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [core_featured] }
-        core_metadata: { Field: core_metadata, Type: varchar(2048), 'Null': NO, Default: null, Extra: '', Comment: 'JSON encoded metadata properties.', From: [core_metadata] }
-        core_created_user_id: { Field: core_created_user_id, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [core_created_user_id] }
-        core_created_by_alias: { Field: core_created_by_alias, Type: varchar(255), 'Null': NO, Default: '', Extra: '', Comment: '', From: [core_created_by_alias] }
-        core_created_time: { Field: core_created_time, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [core_created_time] }
-        core_modified_user_id: { Field: core_modified_user_id, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: 'Most recent user that modified', From: [core_modified_user_id] }
-        core_modified_time: { Field: core_modified_time, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [core_modified_time] }
-        core_language: { Field: core_language, Type: char(7), 'Null': NO, Default: null, Extra: '', Comment: '', From: [core_language] }
-        core_publish_up: { Field: core_publish_up, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [core_publish_up] }
-        core_publish_down: { Field: core_publish_down, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [core_publish_down] }
-        core_content_item_id: { Field: core_content_item_id, Type: 'int(10) unsigned', 'Null': YES, Default: null, Extra: '', Comment: 'ID from the individual type table', From: [core_content_item_id] }
-        asset_id: { Field: asset_id, Type: 'int(10) unsigned', 'Null': YES, Default: null, Extra: '', Comment: 'FK to the #__assets table.', From: [asset_id] }
-        core_images: { Field: core_images, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [core_images] }
-        core_urls: { Field: core_urls, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [core_urls] }
-        core_hits: { Field: core_hits, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [core_hits] }
-        core_version: { Field: core_version, Type: 'int(10) unsigned', 'Null': NO, Default: '1', Extra: '', Comment: '', From: [core_version] }
-        core_ordering: { Field: core_ordering, Type: int(11), 'Null': NO, Default: '0', Extra: '', Comment: '', From: [core_ordering] }
-        core_metakey: { Field: core_metakey, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [core_metakey] }
-        core_metadesc: { Field: core_metadesc, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [core_metadesc] }
-        core_catid: { Field: core_catid, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [core_catid] }
-        core_xreference: { Field: core_xreference, Type: varchar(50), 'Null': NO, Default: null, Extra: '', Comment: 'A reference to enable linkages to external data sets.', From: [core_xreference] }
-        core_type_id: { Field: core_type_id, Type: 'int(10) unsigned', 'Null': YES, Default: null, Extra: '', Comment: '', From: [core_type_id] }
+        core_content_id: { Field: core_content_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: null, Extra: auto_increment, Comment: '', From: [core_content_id] }
+        core_type_alias: { Field: core_type_alias, Type: varchar(255), 'Null': 'NO', Default: '', Extra: '', Comment: 'FK to the content types table', From: [core_type_alias] }
+        core_title: { Field: core_title, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [core_title] }
+        core_alias: { Field: core_alias, Type: varchar(255), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [core_alias] }
+        core_body: { Field: core_body, Type: mediumtext, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [core_body] }
+        core_state: { Field: core_state, Type: tinyint(1), 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [core_state] }
+        core_checked_out_time: { Field: core_checked_out_time, Type: varchar(255), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [core_checked_out_time] }
+        core_checked_out_user_id: { Field: core_checked_out_user_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [core_checked_out_user_id] }
+        core_access: { Field: core_access, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [core_access] }
+        core_params: { Field: core_params, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [core_params] }
+        core_featured: { Field: core_featured, Type: 'tinyint(4) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [core_featured] }
+        core_metadata: { Field: core_metadata, Type: varchar(2048), 'Null': 'NO', Default: null, Extra: '', Comment: 'JSON encoded metadata properties.', From: [core_metadata] }
+        core_created_user_id: { Field: core_created_user_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [core_created_user_id] }
+        core_created_by_alias: { Field: core_created_by_alias, Type: varchar(255), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [core_created_by_alias] }
+        core_created_time: { Field: core_created_time, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [core_created_time] }
+        core_modified_user_id: { Field: core_modified_user_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: 'Most recent user that modified', From: [core_modified_user_id] }
+        core_modified_time: { Field: core_modified_time, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [core_modified_time] }
+        core_language: { Field: core_language, Type: char(7), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [core_language] }
+        core_publish_up: { Field: core_publish_up, Type: datetime, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [core_publish_up] }
+        core_publish_down: { Field: core_publish_down, Type: datetime, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [core_publish_down] }
+        core_content_item_id: { Field: core_content_item_id, Type: 'int(10) unsigned', 'Null': 'YES', Default: null, Extra: '', Comment: 'ID from the individual type table', From: [core_content_item_id] }
+        asset_id: { Field: asset_id, Type: 'int(10) unsigned', 'Null': 'YES', Default: null, Extra: '', Comment: 'FK to the #__assets table.', From: [asset_id] }
+        core_images: { Field: core_images, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [core_images] }
+        core_urls: { Field: core_urls, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [core_urls] }
+        core_hits: { Field: core_hits, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [core_hits] }
+        core_version: { Field: core_version, Type: 'int(10) unsigned', 'Null': 'NO', Default: '1', Extra: '', Comment: '', From: [core_version] }
+        core_ordering: { Field: core_ordering, Type: int(11), 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [core_ordering] }
+        core_metakey: { Field: core_metakey, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [core_metakey] }
+        core_metadesc: { Field: core_metadesc, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [core_metadesc] }
+        core_catid: { Field: core_catid, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [core_catid] }
+        core_xreference: { Field: core_xreference, Type: varchar(50), 'Null': 'NO', Default: null, Extra: '', Comment: 'A reference to enable linkages to external data sets.', From: [core_xreference] }
+        core_type_id: { Field: core_type_id, Type: 'int(10) unsigned', 'Null': 'YES', Default: null, Extra: '', Comment: '', From: [core_type_id] }
     index:
         - { Table: '#__ucm_content', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: core_content_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__ucm_content', Non_unique: '1', Key_name: tag_idx, Seq_in_index: '1', Column_name: core_state, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -630,22 +630,22 @@
         - { Table: '#__ucm_content', Non_unique: '1', Key_name: idx_core_modified_user_id, Seq_in_index: '1', Column_name: core_modified_user_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__ucm_content', Non_unique: '1', Key_name: idx_core_checked_out_user_id, Seq_in_index: '1', Column_name: core_checked_out_user_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__ucm_content', Non_unique: '1', Key_name: idx_core_created_user_id, Seq_in_index: '1', Column_name: core_created_user_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
-        - { Table: '#__ucm_content', Non_unique: '1', Key_name: idx_core_type_id, Seq_in_index: '1', Column_name: core_type_id, Sub_part: null, 'Null': YES, Comment: '', Index_comment: '' }
+        - { Table: '#__ucm_content', Non_unique: '1', Key_name: idx_core_type_id, Seq_in_index: '1', Column_name: core_type_id, Sub_part: null, 'Null': 'YES', Comment: '', Index_comment: '' }
 '#__ucm_history':
     name: '#__ucm_history'
     from:
         - '#__ucm_history'
     columns:
-        version_id: { Field: version_id, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [version_id] }
-        ucm_item_id: { Field: ucm_item_id, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [ucm_item_id] }
-        ucm_type_id: { Field: ucm_type_id, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [ucm_type_id] }
-        version_note: { Field: version_note, Type: varchar(255), 'Null': NO, Default: '', Extra: '', Comment: 'Optional version name', From: [version_note] }
-        save_date: { Field: save_date, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [save_date] }
-        editor_user_id: { Field: editor_user_id, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [editor_user_id] }
-        character_count: { Field: character_count, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: 'Number of characters in this version.', From: [character_count] }
-        sha1_hash: { Field: sha1_hash, Type: varchar(50), 'Null': NO, Default: '', Extra: '', Comment: 'SHA1 hash of the version_data column.', From: [sha1_hash] }
-        version_data: { Field: version_data, Type: mediumtext, 'Null': NO, Default: null, Extra: '', Comment: 'json-encoded string of version data', From: [version_data] }
-        keep_forever: { Field: keep_forever, Type: tinyint(4), 'Null': NO, Default: '0', Extra: '', Comment: '0=auto delete; 1=keep', From: [keep_forever] }
+        version_id: { Field: version_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: null, Extra: auto_increment, Comment: '', From: [version_id] }
+        ucm_item_id: { Field: ucm_item_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [ucm_item_id] }
+        ucm_type_id: { Field: ucm_type_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [ucm_type_id] }
+        version_note: { Field: version_note, Type: varchar(255), 'Null': 'NO', Default: '', Extra: '', Comment: 'Optional version name', From: [version_note] }
+        save_date: { Field: save_date, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [save_date] }
+        editor_user_id: { Field: editor_user_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [editor_user_id] }
+        character_count: { Field: character_count, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: 'Number of characters in this version.', From: [character_count] }
+        sha1_hash: { Field: sha1_hash, Type: varchar(50), 'Null': 'NO', Default: '', Extra: '', Comment: 'SHA1 hash of the version_data column.', From: [sha1_hash] }
+        version_data: { Field: version_data, Type: mediumtext, 'Null': 'NO', Default: null, Extra: '', Comment: 'json-encoded string of version data', From: [version_data] }
+        keep_forever: { Field: keep_forever, Type: tinyint(4), 'Null': 'NO', Default: '0', Extra: '', Comment: '0=auto delete; 1=keep', From: [keep_forever] }
     index:
         - { Table: '#__ucm_history', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: version_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__ucm_history', Non_unique: '1', Key_name: idx_ucm_item_id, Seq_in_index: '1', Column_name: ucm_type_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -656,13 +656,13 @@
     from:
         - '#__update_sites'
     columns:
-        update_site_id: { Field: update_site_id, Type: int(11), 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [update_site_id] }
-        name: { Field: name, Type: varchar(100), 'Null': YES, Default: '', Extra: '', Comment: '', From: [name] }
-        type: { Field: type, Type: varchar(20), 'Null': YES, Default: '', Extra: '', Comment: '', From: [type] }
-        location: { Field: location, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [location] }
-        enabled: { Field: enabled, Type: int(11), 'Null': YES, Default: '0', Extra: '', Comment: '', From: [enabled] }
-        last_check_timestamp: { Field: last_check_timestamp, Type: bigint(20), 'Null': YES, Default: '0', Extra: '', Comment: '', From: [last_check_timestamp] }
-        extra_query: { Field: extra_query, Type: varchar(1000), 'Null': YES, Default: '', Extra: '', Comment: '', From: [extra_query] }
+        update_site_id: { Field: update_site_id, Type: int(11), 'Null': 'NO', Default: null, Extra: auto_increment, Comment: '', From: [update_site_id] }
+        name: { Field: name, Type: varchar(100), 'Null': 'YES', Default: '', Extra: '', Comment: '', From: [name] }
+        type: { Field: type, Type: varchar(20), 'Null': 'YES', Default: '', Extra: '', Comment: '', From: [type] }
+        location: { Field: location, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [location] }
+        enabled: { Field: enabled, Type: int(11), 'Null': 'YES', Default: '0', Extra: '', Comment: '', From: [enabled] }
+        last_check_timestamp: { Field: last_check_timestamp, Type: bigint(20), 'Null': 'YES', Default: '0', Extra: '', Comment: '', From: [last_check_timestamp] }
+        extra_query: { Field: extra_query, Type: varchar(1000), 'Null': 'YES', Default: '', Extra: '', Comment: '', From: [extra_query] }
     index:
         - { Table: '#__update_sites', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: update_site_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
     data:
@@ -674,8 +674,8 @@
     from:
         - '#__update_sites_extensions'
     columns:
-        update_site_id: { Field: update_site_id, Type: int(11), 'Null': NO, Default: '0', Extra: '', Comment: '', From: [update_site_id] }
-        extension_id: { Field: extension_id, Type: int(11), 'Null': NO, Default: '0', Extra: '', Comment: '', From: [extension_id] }
+        update_site_id: { Field: update_site_id, Type: int(11), 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [update_site_id] }
+        extension_id: { Field: extension_id, Type: int(11), 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [extension_id] }
     index:
         - { Table: '#__update_sites_extensions', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: update_site_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__update_sites_extensions', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '2', Column_name: extension_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -688,20 +688,20 @@
     from:
         - '#__updates'
     columns:
-        update_id: { Field: update_id, Type: int(11), 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [update_id] }
-        update_site_id: { Field: update_site_id, Type: int(11), 'Null': YES, Default: '0', Extra: '', Comment: '', From: [update_site_id] }
-        extension_id: { Field: extension_id, Type: int(11), 'Null': YES, Default: '0', Extra: '', Comment: '', From: [extension_id] }
-        name: { Field: name, Type: varchar(100), 'Null': YES, Default: '', Extra: '', Comment: '', From: [name] }
-        description: { Field: description, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [description] }
-        element: { Field: element, Type: varchar(100), 'Null': YES, Default: '', Extra: '', Comment: '', From: [element] }
-        type: { Field: type, Type: varchar(20), 'Null': YES, Default: '', Extra: '', Comment: '', From: [type] }
-        folder: { Field: folder, Type: varchar(20), 'Null': YES, Default: '', Extra: '', Comment: '', From: [folder] }
-        client_id: { Field: client_id, Type: tinyint(3), 'Null': YES, Default: '0', Extra: '', Comment: '', From: [client_id] }
-        version: { Field: version, Type: varchar(32), 'Null': YES, Default: '', Extra: '', Comment: '', From: [version] }
-        data: { Field: data, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [data] }
-        detailsurl: { Field: detailsurl, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [detailsurl] }
-        infourl: { Field: infourl, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [infourl] }
-        extra_query: { Field: extra_query, Type: varchar(1000), 'Null': YES, Default: '', Extra: '', Comment: '', From: [extra_query] }
+        update_id: { Field: update_id, Type: int(11), 'Null': 'NO', Default: null, Extra: auto_increment, Comment: '', From: [update_id] }
+        update_site_id: { Field: update_site_id, Type: int(11), 'Null': 'YES', Default: '0', Extra: '', Comment: '', From: [update_site_id] }
+        extension_id: { Field: extension_id, Type: int(11), 'Null': 'YES', Default: '0', Extra: '', Comment: '', From: [extension_id] }
+        name: { Field: name, Type: varchar(100), 'Null': 'YES', Default: '', Extra: '', Comment: '', From: [name] }
+        description: { Field: description, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [description] }
+        element: { Field: element, Type: varchar(100), 'Null': 'YES', Default: '', Extra: '', Comment: '', From: [element] }
+        type: { Field: type, Type: varchar(20), 'Null': 'YES', Default: '', Extra: '', Comment: '', From: [type] }
+        folder: { Field: folder, Type: varchar(20), 'Null': 'YES', Default: '', Extra: '', Comment: '', From: [folder] }
+        client_id: { Field: client_id, Type: tinyint(3), 'Null': 'YES', Default: '0', Extra: '', Comment: '', From: [client_id] }
+        version: { Field: version, Type: varchar(32), 'Null': 'YES', Default: '', Extra: '', Comment: '', From: [version] }
+        data: { Field: data, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [data] }
+        detailsurl: { Field: detailsurl, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [detailsurl] }
+        infourl: { Field: infourl, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [infourl] }
+        extra_query: { Field: extra_query, Type: varchar(1000), 'Null': 'YES', Default: '', Extra: '', Comment: '', From: [extra_query] }
     index:
         - { Table: '#__updates', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: update_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
 '#__user_keys':
@@ -709,13 +709,13 @@
     from:
         - '#__user_keys'
     columns:
-        id: { Field: id, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
-        user_id: { Field: user_id, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [user_id] }
-        token: { Field: token, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [token] }
-        series: { Field: series, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [series] }
-        invalid: { Field: invalid, Type: tinyint(4), 'Null': NO, Default: null, Extra: '', Comment: '', From: [invalid] }
-        time: { Field: time, Type: varchar(200), 'Null': NO, Default: null, Extra: '', Comment: '', From: [time] }
-        uastring: { Field: uastring, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [uastring] }
+        id: { Field: id, Type: 'int(10) unsigned', 'Null': 'NO', Default: null, Extra: auto_increment, Comment: '', From: [id] }
+        user_id: { Field: user_id, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [user_id] }
+        token: { Field: token, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [token] }
+        series: { Field: series, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [series] }
+        invalid: { Field: invalid, Type: tinyint(4), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [invalid] }
+        time: { Field: time, Type: varchar(200), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [time] }
+        uastring: { Field: uastring, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [uastring] }
     index:
         - { Table: '#__user_keys', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__user_keys', Non_unique: '0', Key_name: series, Seq_in_index: '1', Column_name: series, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -727,21 +727,21 @@
     from:
         - '#__user_notes'
     columns:
-        id: { Field: id, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
-        user_id: { Field: user_id, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [user_id] }
-        catid: { Field: catid, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [catid] }
-        subject: { Field: subject, Type: varchar(100), 'Null': NO, Default: '', Extra: '', Comment: '', From: [subject] }
-        body: { Field: body, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [body] }
-        state: { Field: state, Type: tinyint(3), 'Null': NO, Default: '0', Extra: '', Comment: '', From: [state] }
-        checked_out: { Field: checked_out, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [checked_out] }
-        checked_out_time: { Field: checked_out_time, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [checked_out_time] }
-        created_user_id: { Field: created_user_id, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [created_user_id] }
-        created_time: { Field: created_time, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [created_time] }
-        modified_user_id: { Field: modified_user_id, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [modified_user_id] }
-        modified_time: { Field: modified_time, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [modified_time] }
-        review_time: { Field: review_time, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [review_time] }
-        publish_up: { Field: publish_up, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [publish_up] }
-        publish_down: { Field: publish_down, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [publish_down] }
+        id: { Field: id, Type: 'int(10) unsigned', 'Null': 'NO', Default: null, Extra: auto_increment, Comment: '', From: [id] }
+        user_id: { Field: user_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [user_id] }
+        catid: { Field: catid, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [catid] }
+        subject: { Field: subject, Type: varchar(100), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [subject] }
+        body: { Field: body, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [body] }
+        state: { Field: state, Type: tinyint(3), 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [state] }
+        checked_out: { Field: checked_out, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [checked_out] }
+        checked_out_time: { Field: checked_out_time, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [checked_out_time] }
+        created_user_id: { Field: created_user_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [created_user_id] }
+        created_time: { Field: created_time, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [created_time] }
+        modified_user_id: { Field: modified_user_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [modified_user_id] }
+        modified_time: { Field: modified_time, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [modified_time] }
+        review_time: { Field: review_time, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [review_time] }
+        publish_up: { Field: publish_up, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [publish_up] }
+        publish_down: { Field: publish_down, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [publish_down] }
     index:
         - { Table: '#__user_notes', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__user_notes', Non_unique: '1', Key_name: idx_user_id, Seq_in_index: '1', Column_name: user_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -751,10 +751,10 @@
     from:
         - '#__user_profiles'
     columns:
-        user_id: { Field: user_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [user_id] }
-        profile_key: { Field: profile_key, Type: varchar(100), 'Null': NO, Default: null, Extra: '', Comment: '', From: [profile_key] }
-        profile_value: { Field: profile_value, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [profile_value] }
-        ordering: { Field: ordering, Type: int(11), 'Null': NO, Default: '0', Extra: '', Comment: '', From: [ordering] }
+        user_id: { Field: user_id, Type: int(11), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [user_id] }
+        profile_key: { Field: profile_key, Type: varchar(100), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [profile_key] }
+        profile_value: { Field: profile_value, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [profile_value] }
+        ordering: { Field: ordering, Type: int(11), 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [ordering] }
     index:
         - { Table: '#__user_profiles', Non_unique: '0', Key_name: idx_user_id_profile_key, Seq_in_index: '1', Column_name: user_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__user_profiles', Non_unique: '0', Key_name: idx_user_id_profile_key, Seq_in_index: '2', Column_name: profile_key, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -763,8 +763,8 @@
     from:
         - '#__user_usergroup_map'
     columns:
-        user_id: { Field: user_id, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: 'Foreign Key to #__users.id', From: [user_id] }
-        group_id: { Field: group_id, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: 'Foreign Key to #__usergroups.id', From: [group_id] }
+        user_id: { Field: user_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: 'Foreign Key to #__users.id', From: [user_id] }
+        group_id: { Field: group_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: 'Foreign Key to #__usergroups.id', From: [group_id] }
     index:
         - { Table: '#__user_usergroup_map', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: user_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__user_usergroup_map', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '2', Column_name: group_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -773,11 +773,11 @@
     from:
         - '#__usergroups'
     columns:
-        id: { Field: id, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
-        parent_id: { Field: parent_id, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: 'Adjacency List Reference Id', From: [parent_id] }
-        lft: { Field: lft, Type: int(11), 'Null': NO, Default: '0', Extra: '', Comment: 'Nested set lft.', From: [lft] }
-        rgt: { Field: rgt, Type: int(11), 'Null': NO, Default: '0', Extra: '', Comment: 'Nested set rgt.', From: [rgt] }
-        title: { Field: title, Type: varchar(100), 'Null': NO, Default: '', Extra: '', Comment: '', From: [title] }
+        id: { Field: id, Type: 'int(10) unsigned', 'Null': 'NO', Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
+        parent_id: { Field: parent_id, Type: 'int(10) unsigned', 'Null': 'NO', Default: '0', Extra: '', Comment: 'Adjacency List Reference Id', From: [parent_id] }
+        lft: { Field: lft, Type: int(11), 'Null': 'NO', Default: '0', Extra: '', Comment: 'Nested set lft.', From: [lft] }
+        rgt: { Field: rgt, Type: int(11), 'Null': 'NO', Default: '0', Extra: '', Comment: 'Nested set rgt.', From: [rgt] }
+        title: { Field: title, Type: varchar(100), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [title] }
     index:
         - { Table: '#__usergroups', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__usergroups', Non_unique: '0', Key_name: idx_usergroup_parent_title_lookup, Seq_in_index: '1', Column_name: parent_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -801,22 +801,22 @@
     from:
         - '#__users'
     columns:
-        id: { Field: id, Type: int(11), 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
-        name: { Field: name, Type: varchar(255), 'Null': NO, Default: '', Extra: '', Comment: '', From: [name] }
-        username: { Field: username, Type: varchar(150), 'Null': NO, Default: '', Extra: '', Comment: '', From: [username] }
-        email: { Field: email, Type: varchar(100), 'Null': NO, Default: '', Extra: '', Comment: '', From: [email] }
-        password: { Field: password, Type: varchar(100), 'Null': NO, Default: '', Extra: '', Comment: '', From: [password] }
-        block: { Field: block, Type: tinyint(4), 'Null': NO, Default: '0', Extra: '', Comment: '', From: [block] }
-        sendEmail: { Field: sendEmail, Type: tinyint(4), 'Null': YES, Default: '0', Extra: '', Comment: '', From: [sendEmail] }
-        registerDate: { Field: registerDate, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [registerDate] }
-        lastvisitDate: { Field: lastvisitDate, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [lastvisitDate] }
-        activation: { Field: activation, Type: varchar(100), 'Null': NO, Default: '', Extra: '', Comment: '', From: [activation] }
-        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [params] }
-        lastResetTime: { Field: lastResetTime, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: 'Date of last password reset', From: [lastResetTime] }
-        resetCount: { Field: resetCount, Type: int(11), 'Null': NO, Default: '0', Extra: '', Comment: 'Count of password resets since lastResetTime', From: [resetCount] }
-        otpKey: { Field: otpKey, Type: varchar(1000), 'Null': NO, Default: '', Extra: '', Comment: 'Two factor authentication encrypted keys', From: [otpKey] }
-        otep: { Field: otep, Type: varchar(1000), 'Null': NO, Default: '', Extra: '', Comment: 'One time emergency passwords', From: [otep] }
-        requireReset: { Field: requireReset, Type: tinyint(4), 'Null': NO, Default: '0', Extra: '', Comment: 'Require user to reset password on next login', From: [requireReset] }
+        id: { Field: id, Type: int(11), 'Null': 'NO', Default: null, Extra: auto_increment, Comment: '', From: [id] }
+        name: { Field: name, Type: varchar(255), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [name] }
+        username: { Field: username, Type: varchar(150), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [username] }
+        email: { Field: email, Type: varchar(100), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [email] }
+        password: { Field: password, Type: varchar(100), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [password] }
+        block: { Field: block, Type: tinyint(4), 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [block] }
+        sendEmail: { Field: sendEmail, Type: tinyint(4), 'Null': 'YES', Default: '0', Extra: '', Comment: '', From: [sendEmail] }
+        registerDate: { Field: registerDate, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [registerDate] }
+        lastvisitDate: { Field: lastvisitDate, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [lastvisitDate] }
+        activation: { Field: activation, Type: varchar(100), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [activation] }
+        params: { Field: params, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [params] }
+        lastResetTime: { Field: lastResetTime, Type: datetime, 'Null': 'NO', Default: '0000-00-00 00:00:00', Extra: '', Comment: 'Date of last password reset', From: [lastResetTime] }
+        resetCount: { Field: resetCount, Type: int(11), 'Null': 'NO', Default: '0', Extra: '', Comment: 'Count of password resets since lastResetTime', From: [resetCount] }
+        otpKey: { Field: otpKey, Type: varchar(1000), 'Null': 'NO', Default: '', Extra: '', Comment: 'Two factor authentication encrypted keys', From: [otpKey] }
+        otep: { Field: otep, Type: varchar(1000), 'Null': 'NO', Default: '', Extra: '', Comment: 'One time emergency passwords', From: [otep] }
+        requireReset: { Field: requireReset, Type: tinyint(4), 'Null': 'NO', Default: '0', Extra: '', Comment: 'Require user to reset password on next login', From: [requireReset] }
     index:
         - { Table: '#__users', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__users', Non_unique: '1', Key_name: idx_name, Seq_in_index: '1', Column_name: name, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -828,10 +828,10 @@
     from:
         - '#__viewlevels'
     columns:
-        id: { Field: id, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
-        title: { Field: title, Type: varchar(100), 'Null': NO, Default: '', Extra: '', Comment: '', From: [title] }
-        ordering: { Field: ordering, Type: int(11), 'Null': NO, Default: '0', Extra: '', Comment: '', From: [ordering] }
-        rules: { Field: rules, Type: varchar(5120), 'Null': NO, Default: null, Extra: '', Comment: 'JSON encoded access control.', From: [rules] }
+        id: { Field: id, Type: 'int(10) unsigned', 'Null': 'NO', Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
+        title: { Field: title, Type: varchar(100), 'Null': 'NO', Default: '', Extra: '', Comment: '', From: [title] }
+        ordering: { Field: ordering, Type: int(11), 'Null': 'NO', Default: '0', Extra: '', Comment: '', From: [ordering] }
+        rules: { Field: rules, Type: varchar(5120), 'Null': 'NO', Default: null, Extra: '', Comment: 'JSON encoded access control.', From: [rules] }
     index:
         - { Table: '#__viewlevels', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__viewlevels', Non_unique: '0', Key_name: idx_assetgroup_title_lookup, Seq_in_index: '1', Column_name: title, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -846,15 +846,15 @@
     from:
         - '#__watcher_backups'
     columns:
-        id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
-        site_id: { Field: site_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [site_id] }
-        title: { Field: title, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: 'Record title', From: [title] }
-        alias: { Field: alias, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: 'URL Alias', From: [alias] }
-        size: { Field: size, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [size] }
-        url: { Field: url, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: URL, From: [url] }
-        created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: 'Created time', From: [created] }
-        state: { Field: state, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: 'Record state', From: [state] }
-        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: Params, From: [params] }
+        id: { Field: id, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
+        site_id: { Field: site_id, Type: int(11), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [site_id] }
+        title: { Field: title, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: 'Record title', From: [title] }
+        alias: { Field: alias, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: 'URL Alias', From: [alias] }
+        size: { Field: size, Type: int(11), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [size] }
+        url: { Field: url, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: URL, From: [url] }
+        created: { Field: created, Type: datetime, 'Null': 'NO', Default: null, Extra: '', Comment: 'Created time', From: [created] }
+        state: { Field: state, Type: tinyint(1), 'Null': 'NO', Default: '1', Extra: '', Comment: 'Record state', From: [state] }
+        params: { Field: params, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: Params, From: [params] }
     index:
         - { Table: '#__watcher_backups', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__watcher_backups', Non_unique: '1', Key_name: idx_alias, Seq_in_index: '1', Column_name: alias, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -864,22 +864,23 @@
     from:
         - '#__watcher_sites'
     columns:
-        id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
-        catid: { Field: catid, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [catid] }
-        title: { Field: title, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: 'Record title', From: [title] }
-        alias: { Field: alias, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: 'URL Alias', From: [alias] }
-        site: { Field: site, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [site] }
-        url: { Field: url, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: URL, From: [url] }
-        type: { Field: type, Type: char(20), 'Null': NO, Default: null, Extra: '', Comment: '', From: [type] }
-        username: { Field: username, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [username] }
-        password: { Field: password, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [password] }
-        access_token: { Field: access_token, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [access_token] }
-        created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: 'Created time', From: [created] }
-        created_by: { Field: created_by, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: Author, From: [created_by] }
-        modified: { Field: modified, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: 'Modified time', From: [modified] }
-        modified_by: { Field: modified_by, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: 'Modified user', From: [modified_by] }
-        state: { Field: state, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: 'Record state', From: [state] }
-        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: Params, From: [params] }
+        id: { Field: id, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
+        catid: { Field: catid, Type: int(11), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [catid] }
+        title: { Field: title, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: 'Record title', From: [title] }
+        alias: { Field: alias, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: 'URL Alias', From: [alias] }
+        site: { Field: site, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [site] }
+        url: { Field: url, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: URL, From: [url] }
+        type: { Field: type, Type: char(20), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [type] }
+        username: { Field: username, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [username] }
+        password: { Field: password, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [password] }
+        access_token: { Field: access_token, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [access_token] }
+        created: { Field: created, Type: datetime, 'Null': 'NO', Default: null, Extra: '', Comment: 'Created time', From: [created] }
+        created_by: { Field: created_by, Type: int(11), 'Null': 'NO', Default: null, Extra: '', Comment: Author, From: [created_by] }
+        modified: { Field: modified, Type: datetime, 'Null': 'NO', Default: null, Extra: '', Comment: 'Modified time', From: [modified] }
+        modified_by: { Field: modified_by, Type: int(11), 'Null': 'NO', Default: null, Extra: '', Comment: 'Modified user', From: [modified_by] }
+        last_backup: { Field: last_backup, Type: datetime, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [last_backup] }
+        state: { Field: state, Type: tinyint(1), 'Null': 'NO', Default: '1', Extra: '', Comment: 'Record state', From: [state] }
+        params: { Field: params, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: Params, From: [params] }
     index:
         - { Table: '#__watcher_sites', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__watcher_sites', Non_unique: '1', Key_name: idx_alias, Seq_in_index: '1', Column_name: alias, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
