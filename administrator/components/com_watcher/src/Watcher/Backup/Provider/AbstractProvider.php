@@ -70,7 +70,12 @@ class AbstractProvider
 			\JFolder::create(dirname($dest));
 		}
 
-		Downloader::download($src->toString(), $dest);
+		$response = Downloader::download($src->toString(), $dest);
+
+		if ($response->code != 200)
+		{
+			throw new \RuntimeException('HTTP Error: ' . $response->code);
+		}
 
 		return $dest;
 	}

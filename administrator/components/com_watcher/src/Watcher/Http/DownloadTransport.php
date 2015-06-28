@@ -123,16 +123,6 @@ class DownloadTransport extends Curl
 			$options[CURLOPT_FOLLOWLOCATION] = (bool) isset($this->options['follow_location']) ? $this->options['follow_location'] : true;
 		}
 
-		// Download File
-		if (empty($this->options['download.dest']))
-		{
-			throw new \LogicException('No download dest');
-		}
-
-		$fp = fopen($this->options['download.dest'], 'w+');
-
-		$options[CURLOPT_FILE] = $fp;
-
 		// Set any custom transport options
 		if (isset($this->options['transport.curl']))
 		{
@@ -140,6 +130,12 @@ class DownloadTransport extends Curl
 			{
 				$options[$key] = $value;
 			}
+		}
+
+		// Download File
+		if (empty($this->options['download.dest']))
+		{
+			throw new \LogicException('No download dest');
 		}
 
 		// Set the cURL options.
@@ -154,9 +150,13 @@ class DownloadTransport extends Curl
 		// Close the connection.
 		curl_close($ch);
 
-		fclose($fp);
+		$response = $this->getResponse($content, $info);
 
-		return $this->getResponse($content, $info);
+		file_put_contents($this->options['download.dest'], $response->body);
+
+		$response->body = null;
+
+		return $response;
 	}
 
 	/**
