@@ -1,9 +1,9 @@
 table:
     '#__assets': all
     '#__associations': all
-    '#__categories': all
+    '#__categories': cols
     '#__content_types': all
-    '#__contentitem_tag_map': all
+    '#__contentitem_tag_map': cols
     '#__core_log_searches': all
     '#__extensions': all
     '#__languages': all
@@ -12,7 +12,7 @@ table:
     '#__modules': all
     '#__modules_menu': all
     '#__overrider': all
-    '#__redirect_links': all
+    '#__redirect_links': cols
     '#__schemas': all
     '#__session': cols
     '#__tags': all

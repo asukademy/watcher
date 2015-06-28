@@ -109,12 +109,6 @@
         - { Table: '#__categories', Non_unique: '1', Key_name: idx_left_right, Seq_in_index: '2', Column_name: rgt, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__categories', Non_unique: '1', Key_name: idx_alias, Seq_in_index: '1', Column_name: alias, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__categories', Non_unique: '1', Key_name: idx_language, Seq_in_index: '1', Column_name: language, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
-    data:
-        - ['1', '0', '0', '0', '17', '0', '', system, ROOT, root, '', '', '1', '0', '0000-00-00 00:00:00', '1', '{}', '', '', '{}', '42', '2011-01-01 00:00:01', '0', '0000-00-00 00:00:00', '0', '*', '1']
-        - ['7', '32', '1', '9', '10', '1', uncategorised, com_users, Uncategorised, uncategorised, '', '', '1', '0', '0000-00-00 00:00:00', '1', '{"category_layout":"","image":""}', '', '', '{"author":"","robots":""}', '42', '2011-01-01 00:00:01', '0', '0000-00-00 00:00:00', '0', '*', '1']
-        - ['8', '55', '1', '11', '12', '1', test, com_watcher, test, test, '', '', '1', '0', '0000-00-00 00:00:00', '1', '', '', '', '', '1', '2015-06-27 15:00:24', '0', '2015-06-27 15:00:24', '0', '', '1']
-        - ['9', '56', '1', '13', '14', '1', 中文, com_watcher, 中文, 中文, '', '', '1', '0', '0000-00-00 00:00:00', '1', '', '', '', '', '1', '2015-06-27 15:00:47', '0', '2015-06-27 15:00:47', '0', '', '1']
-        - ['10', '57', '1', '15', '16', '1', rrr, com_watcher, rrr, rrr, '', '', '1', '0', '0000-00-00 00:00:00', '1', '', '', '', '', '1', '2015-06-27 15:06:21', '0', '2015-06-27 15:06:21', '0', '', '1']
 '#__content_types':
     name: '#__content_types'
     from:
