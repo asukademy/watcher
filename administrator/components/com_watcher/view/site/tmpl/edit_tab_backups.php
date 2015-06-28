@@ -32,7 +32,7 @@ $tab = $data->tab;
 			</tr>
 			</thead>
 			<tbody>
-			<?php foreach ($data->backups as $k => $backup) : ?>
+			<?php foreach ((array) $data->backups as $k => $backup) : ?>
 
 			<?php
 				$backup = new Data($backup);

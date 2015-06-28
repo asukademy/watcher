@@ -26,19 +26,13 @@ $form      = $data->form;
 $item      = $data->item;
 
 // Setting tabset
-if (empty($data->item->id))
+$tabs = array(
+	'tab_basic'
+);
+
+if ($data->item->id)
 {
-	$tabs = array(
-		'tab_basic',
-		'tab_backups'
-	);
-}
-else
-{
-	$tabs = array(
-		'tab_backups',
-		'tab_basic',
-	);
+	array_unshift($tabs, 'tab_backups');
 }
 ?>
 <!-- Validate Script -->

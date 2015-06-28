@@ -90,6 +90,9 @@ class WatcherViewSiteHtml extends EditView
 
 		$data = $this->getData();
 
-		$data->backups = $this->get('Items', 'backups');
+		if ($data->item->id)
+		{
+			$data->backups = $this->get('Items', 'backups');
+		}
 	}
 }
