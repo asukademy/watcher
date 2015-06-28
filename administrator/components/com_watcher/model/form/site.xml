@@ -91,6 +91,17 @@
 			/>
 
 		<field
+			name="public_key"
+			type="text"
+			label="Public Key"
+			description=""
+			class="input-xxlarge"
+			default=""
+			disabled="true"
+			readonly="true"
+			/>
+
+		<field
 			name="access_token"
 			type="text"
 			label="Access Token"

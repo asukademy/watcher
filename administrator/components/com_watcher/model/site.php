@@ -6,6 +6,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
+use Watcher\Helper\TokenHelper;
 use Windwalker\Model\AdminModel;
 
 // No direct access
@@ -69,7 +70,14 @@ class WatcherModelSite extends AdminModel
 	 */
 	public function getItem($pk = null)
 	{
-		return parent::getItem($pk);
+		$item = parent::getItem($pk);
+
+		if (!empty($item->secret) && !empty($item->public_key))
+		{
+			$item->access_token = TokenHelper::genAccessToken($item->secret);
+		}
+
+		return $item;
 	}
 
 	/**
@@ -85,12 +93,12 @@ class WatcherModelSite extends AdminModel
 
 		if (!$table->secret)
 		{
-			$table->secret = \Watcher\Helper\TokenHelper::genSecret();
+			$table->secret = TokenHelper::genSecret();
 		}
 
-		if (!$table->access_token)
+		if (!$table->public_key)
 		{
-			$table->access_token = \Watcher\Helper\TokenHelper::genAccessToken($table->secret);
+			$table->public_key = TokenHelper::genPublicKey($table->secret);
 		}
 	}
 

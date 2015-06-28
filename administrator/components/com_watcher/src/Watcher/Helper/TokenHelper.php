@@ -20,9 +20,9 @@ class TokenHelper
 	 *
 	 * @return  string
 	 */
-	public static function genAccessToken($secret)
+	public static function genPublicKey($secret)
 	{
-		return sha1(md5('SimularWatcher' . $secret));
+		return sha1(md5('SimularWatcher' . static::genAccessToken($secret)));
 	}
 
 	/**
@@ -33,5 +33,17 @@ class TokenHelper
 	public static function genSecret()
 	{
 		return \JUserHelper::genRandomPassword(24);
+	}
+
+	/**
+	 * genMiddleKey
+	 *
+	 * @param string $secret
+	 *
+	 * @return  string
+	 */
+	public static function genAccessToken($secret)
+	{
+		return md5('MegaMount' . $secret);
 	}
 }

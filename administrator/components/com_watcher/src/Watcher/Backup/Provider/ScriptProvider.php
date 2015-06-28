@@ -15,7 +15,7 @@ use Watcher\Helper\TokenHelper;
  * 
  * @since  {DEPLOY_VERSION}
  */
-class EzsetProvider extends AbstractProvider
+class ScriptProvider extends AbstractProvider
 {
 	/**
 	 * getUri

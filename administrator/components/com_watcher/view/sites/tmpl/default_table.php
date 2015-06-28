@@ -6,6 +6,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
+use Watcher\Helper\TokenHelper;
 use Windwalker\Data\Data;
 
 // No direct access
@@ -71,6 +72,11 @@ $grid->registerTableSort();
 	<!--USER-->
 	<th width="10%" class="center">
 		<?php echo $grid->sortTitle('JAUTHOR', 'user.name'); ?>
+	</th>
+
+	<!--KEY-->
+	<th width="10%" class="center">
+		Key
 	</th>
 
 	<!--TOKEN-->
@@ -161,9 +167,14 @@ $grid->registerTableSort();
 			<?php echo $this->escape($item->user_name); ?>
 		</td>
 
+		<!--KEY-->
+		<td class="center">
+			<input class="span12" type="text" disabled value="<?php echo $item->public_key; ?>" />
+		</td>
+
 		<!--TOKEN-->
 		<td class="center">
-			<input class="span12" type="text" disabled value="<?php echo $item->access_token; ?>" />
+			<input class="span12" type="text" disabled value="<?php echo TokenHelper::genAccessToken($item->secret); ?>" />
 		</td>
 
 		<!--ID-->
