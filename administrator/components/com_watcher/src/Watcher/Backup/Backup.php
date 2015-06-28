@@ -91,29 +91,45 @@ class Backup
 	/**
 	 * backup
 	 *
-	 * @return  string
+	 * @return string
+	 * @throws \Exception
 	 */
 	public function backup()
 	{
-		$this->createBackupProfile();
+		$db = \JFactory::getDbo();
 
-		$file = $this->downloadBackupFile();
+		$db->transactionStart(true);
 
-		$url = $this->store($file);
+		try
+		{
+			$this->createBackupProfile();
 
-		$this->backup->url = $url;
-		$this->backup->size = Nomnom::file($file->getPathname())->to(Nomnom::kB);
-		$this->backup->state = static::STATE_FINISHED;
+			$file = $this->downloadBackupFile();
 
-		(new DataMapper(Table::BACKUPS))->updateOne($this->backup, 'id');
+			$url = $this->store($file);
 
-		$this->site->last_backup = $this->backup->created;
+			$this->backup->url = $url;
+			$this->backup->size = Nomnom::file($file->getPathname())->to(Nomnom::kB);
+			$this->backup->state = static::STATE_FINISHED;
 
-		(new DataMapper(Table::SITES))->updateOne($this->site, 'id');
+			(new DataMapper(Table::BACKUPS))->updateOne($this->backup, 'id');
 
-		File::delete($file->getPathname());
+			$this->site->last_backup = $this->backup->created;
 
-		return $this->getStorage()->getBaseUrl() . '/' . $url;
+			(new DataMapper(Table::SITES))->updateOne($this->site, 'id');
+
+			$db->transactionCommit(true);
+
+			File::delete($file->getPathname());
+
+			return $this->getStorage()->getBaseUrl() . '/' . $url;
+		}
+		catch (\Exception $e)
+		{
+			$db->transactionRollback(true);
+
+			throw $e;
+		}
 	}
 
 	/**
