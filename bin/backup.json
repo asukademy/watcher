@@ -1,0 +1,11 @@
+{
+    "public_key": "4099c1dfc30db2d7a34a79ab64f21dd1f912cc39",
+    "root": "..",
+    "dump_database": true,
+    "database": {
+        "host": "localhost",
+        "user": "root",
+        "pass": "1234",
+        "name": "watcher"
+    }
+}

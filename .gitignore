@@ -19,3 +19,4 @@ Thumbs.db
 
 # Config
 sms/etc/config.yml
+bin/backup.json

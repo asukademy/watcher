@@ -1,0 +1,11 @@
+{
+    "public_key": "",
+    "root": "/",
+    "dump_database": true,
+    "database": {
+        "host": "localhost",
+        "user": "",
+        "pass": "",
+        "name": ""
+    }
+}
