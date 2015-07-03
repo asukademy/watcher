@@ -7,6 +7,7 @@
  */
 
 use Windwalker\DI\Container;
+use Windwalker\Html\HtmlElement;
 use Windwalker\Model\Model;
 use Windwalker\View\Engine\PhpEngine;
 use Windwalker\View\Html\EditView;
@@ -94,5 +95,36 @@ class WatcherViewSiteHtml extends EditView
 		{
 			$data->backups = $this->get('Items', 'backups');
 		}
+
+		// JS
+		$this->container->get('helper.asset')->addJS('main.js');
+	}
+
+	/**
+	 * Configure the toolbar button set.
+	 *
+	 * @param   array   $buttonSet Customize button set.
+	 * @param   object  $canDo     Access object.
+	 *
+	 * @return  array
+	 */
+	protected function configureToolbar($buttonSet = array(), $canDo = null)
+	{
+		$buttonSet = parent::configureToolbar($buttonSet, $canDo);
+
+		if ($this->data->item->id)
+		{
+			$buttonSet['backup'] = array(
+				'handler'  => 'custom',
+				'args'     => array(new HtmlElement('button', '<i class="icon-box-add"></i> 立即備份', [
+					'onclick' => sprintf('Watcher.backup(%s, event)', $this->data->item->id),
+					'class' => 'btn btn-small btn-primary'
+				])),
+				'access'   => true,
+				'priority' => 100
+			);
+		}
+
+		return $buttonSet;
 	}
 }

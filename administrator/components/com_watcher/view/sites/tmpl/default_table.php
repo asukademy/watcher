@@ -59,6 +59,11 @@ $grid->registerTableSort();
 		<?php echo $grid->sortTitle('JCATEGORY', 'category.title'); ?>
 	</th>
 
+	<!--BACKUP-->
+	<th width="10%" class="center">
+		立即備份
+	</th>
+
 	<!--DOWNLOAD-->
 	<th width="10%" class="center">
 		下載
@@ -146,6 +151,11 @@ $grid->registerTableSort();
 		<!--CATEGORY-->
 		<td class="center">
 			<?php echo $this->escape($item->category_title); ?>
+		</td>
+
+		<!--BACKUP-->
+		<td class="center">
+			<button type="button" class="btn btn-small btn-primary" onclick="Watcher.backup(<?=$item->id?>, event);"><i class="icon-box-add"></i> 立即備份</button>
 		</td>
 
 		<!--DOWNLOAD-->

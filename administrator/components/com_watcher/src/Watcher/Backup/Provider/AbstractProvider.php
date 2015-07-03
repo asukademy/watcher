@@ -74,7 +74,10 @@ class AbstractProvider
 
 		if ($response->code != 200)
 		{
-			throw new \RuntimeException('HTTP Error: ' . $response->code);
+			$msg = 'HTTP Error: ' . $response->code;
+			$msg .= "\n" . print_r($response->headers, true);
+
+			throw new \RuntimeException($msg);
 		}
 
 		return $dest;

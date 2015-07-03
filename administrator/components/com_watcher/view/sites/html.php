@@ -104,6 +104,8 @@ class WatcherViewSitesHtml extends GridView
 	 */
 	protected function prepareData()
 	{
+		// JS
+		$this->container->get('helper.asset')->addJS('main.js');
 	}
 
 	/**
