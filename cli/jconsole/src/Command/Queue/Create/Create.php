@@ -83,7 +83,7 @@ class Create extends JCommand
 
 		foreach ($sites as $site)
 		{
-			$ironmq->postMessage("Backup", json_encode($site), ['timeout' => 300]);
+			$ironmq->postMessage("Backup", json_encode($site), ['timeout' => 600]);
 		}
 
 		return true;

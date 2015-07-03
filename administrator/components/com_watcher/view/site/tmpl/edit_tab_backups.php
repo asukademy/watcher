@@ -40,8 +40,8 @@ $tab = $data->tab;
 				$backupHandler->setBackup($backup);
 
 				// Diff
-				$now = DateHelper::getDate();
-				$date = DateHelper::getDate($backup->created);
+				$now = DateHelper::getDate('now', 'UTC');
+				$date = DateHelper::getDate($backup->created, 'UTC');
 
 				$diff = $now->diff($date);
 			?>
@@ -60,7 +60,7 @@ $tab = $data->tab;
 					<?php echo $backup->title; ?>
 				</td>
 				<td>
-					<?php echo $backup->created; ?>
+					<?php echo JHtml::date($backup->created, JDate::$format); ?>
 				</td>
 				<td align="right">
 					<?php echo number_format(Nomnom::nom($backup->size)->from(Nomnom::kB)->to(Nomnom::MB), 2); ?> MB
@@ -73,6 +73,10 @@ $tab = $data->tab;
 					<?php elseif ($backup->state == Backup::STATE_FINISHED): ?>
 					<span class="label label-success">
 						備份完成
+					</span>
+					<?php elseif ($backup->state == Backup::STATE_FAILURE): ?>
+						<span class="label label-danger">
+						備份失敗
 					</span>
 					<?php endif; ?>
 				</td>

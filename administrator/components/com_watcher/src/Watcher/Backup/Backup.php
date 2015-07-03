@@ -30,6 +30,7 @@ class Backup
 	const STATE_PROCESS = 1;
 	const STATE_FINISHED = 2;
 	const STATE_FILE_DELETED = -1;
+	const STATE_FAILURE = -2;
 
 	/**
 	 * Property site.
@@ -96,10 +97,6 @@ class Backup
 	 */
 	public function backup()
 	{
-		$db = \JFactory::getDbo();
-
-		$db->transactionStart(true);
-
 		try
 		{
 			$this->createBackupProfile();
@@ -118,15 +115,14 @@ class Backup
 
 			(new DataMapper(Table::SITES))->updateOne($this->site, 'id');
 
-			$db->transactionCommit(true);
-
 			File::delete($file->getPathname());
 
 			return $this->getStorage()->getBaseUrl() . '/' . $url;
 		}
 		catch (\Exception $e)
 		{
-			$db->transactionRollback(true);
+			$this->backup->state = static::STATE_FAILURE;
+			(new DataMapper(Table::BACKUPS))->updateOne($this->backup, 'id');
 
 			throw $e;
 		}
