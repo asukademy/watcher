@@ -123,6 +123,21 @@ class WatcherViewSiteHtml extends EditView
 				'access'   => true,
 				'priority' => 100
 			);
+
+			$uri = new JUri($this->data->item->url);
+			$uri->setVar('access_token', $this->data->item->access_token);
+
+			$buttonSet['test'] = array(
+				'handler'  => 'custom',
+				'args'     => array(new HtmlElement('a', '<i class="icon-download"></i> 測試下載', [
+					'target' => '_blank',
+					'style' => 'text-shadow: none',
+					'class' => 'btn btn-small btn-info',
+					'href' => $uri->toString()
+				])),
+				'access'   => true,
+				'priority' => 100
+			);
 		}
 
 		return $buttonSet;

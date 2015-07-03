@@ -57,7 +57,7 @@ if ($data->item->id)
 			?>
 		</div>
 
-		<?php echo JHtmlBootstrap::startTabSet('siteEditTab', array('active' => 'tab_basic')); ?>
+		<?php echo JHtmlBootstrap::startTabSet('siteEditTab', array('active' => $tabs[0])); ?>
 
 			<?php
 			foreach ($tabs as $tab)
