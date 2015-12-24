@@ -52,7 +52,7 @@ $config = new JConfig;
 
 use JConsole\Application\JConsole;
 use Joomla\Console\Output\Stdout;
-
+error_reporting(32767);
 $console = new JConsole(null, null, new Stdout);
 
 $console->setDescription(null)
